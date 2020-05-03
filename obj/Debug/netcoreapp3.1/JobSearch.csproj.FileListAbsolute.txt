@@ -422,8 +422,8 @@ C:\Users\gilde\workspace\csharp\JobSearch\bin\Debug\netcoreapp3.1\zh-Hant\Micros
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.csproj.CoreCompileInputs.cache
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
-C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\EmployerLogin.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\EmployerRegister.cshtml.g.cs
