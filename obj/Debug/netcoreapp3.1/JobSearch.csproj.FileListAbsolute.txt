@@ -428,3 +428,4 @@ C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\staticwebasset
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.dll
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.pdb
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.genruntimeconfig.cache
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.csprojAssemblyReference.cache

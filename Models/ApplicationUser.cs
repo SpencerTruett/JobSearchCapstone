@@ -22,11 +22,8 @@ namespace JobSearch.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public int LocationId { get; set; }
-        public Location Location { get; set; }
         public int CompanyId { get; set; }
-        public Company Company { get; set; }
         public int ApplicantId { get; set; }
-        public Applicant Applicant { get; set; }
         public bool IsEmployer { get; set; }
     }
 }
