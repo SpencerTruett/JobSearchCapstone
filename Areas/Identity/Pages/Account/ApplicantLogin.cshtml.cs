@@ -5,25 +5,25 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using JobSearch.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using JobSearch.Models;
 
 namespace JobSearch.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class EmployerLoginModel : PageModel
+    public class ApplicantLoginModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger<EmployerLoginModel> _logger;
+        private readonly ILogger<ApplicantLoginModel> _logger;
 
-        public EmployerLoginModel(SignInManager<ApplicationUser> signInManager, 
-            ILogger<EmployerLoginModel> logger,
+        public ApplicantLoginModel(SignInManager<ApplicationUser> signInManager, 
+            ILogger<ApplicantLoginModel> logger,
             UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;

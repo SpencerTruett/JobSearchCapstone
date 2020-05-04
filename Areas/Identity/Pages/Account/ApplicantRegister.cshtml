@@ -1,7 +1,7 @@
 ﻿@page
-@model EmployerRegisterModel
+@model ApplicantRegisterModel
 @{
-    ViewData["Title"] = "Register as an Employer";
+    ViewData["Title"] = "Register as an Applicant";
 }
 
 <h1>@ViewData["Title"]</h1>
@@ -42,13 +42,12 @@
             </div>
             <div class="form-group">
                 <p>
-                    <a asp-page="./EmployerLogin" asp-route-returnUrl="@Model.ReturnUrl">Login to an existing account</a>
+                    <a asp-page="./ApplicantLogin" asp-route-returnUrl="@Model.ReturnUrl">Login to an existing account</a>
                 </p>
             </div>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
-       
     </div>
 </div>
 

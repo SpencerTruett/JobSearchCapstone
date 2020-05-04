@@ -18,17 +18,17 @@ using Microsoft.Extensions.Logging;
 namespace JobSearch.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class EmployerRegisterModel : PageModel
+    public class ApplicantRegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILogger<EmployerRegisterModel> _logger;
+        private readonly ILogger<ApplicantRegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public EmployerRegisterModel(
+        public ApplicantRegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<EmployerRegisterModel> logger,
+            ILogger<ApplicantRegisterModel> logger,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -83,7 +83,7 @@ namespace JobSearch.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, IsEmployer=true };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, IsEmployer=false };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
