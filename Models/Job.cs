@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
@@ -22,5 +23,6 @@ namespace JobSearch.Models
         public EmploymentType EmploymentType { get; set; }
         public int CompanyId { get; set; }
         public Company Company { get; set; }
+        public ICollection<Applicant> Applicants { get; set; }
     }
 }
