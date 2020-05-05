@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using JobSearch.Models;
+using JobSearch.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearch.Areas.Identity.Pages.Account
 {
@@ -21,14 +23,18 @@ namespace JobSearch.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<ApplicantLoginModel> _logger;
+        private readonly ApplicationDbContext _context;
 
         public ApplicantLoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<ApplicantLoginModel> logger,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            JobSearch.Data.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
+
         }
 
         [BindProperty]
@@ -74,12 +80,18 @@ namespace JobSearch.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/Applicant");
 
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Email == Input.Email && u.IsEmployer == false);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt. Please make sure you are a Registered Applicant");
+                    return Page();
+                }
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
