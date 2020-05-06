@@ -41,9 +41,15 @@ namespace JobSearch.Controllers
         }
 
         // GET: Employer/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var job = await _context.Job
+                .Include(c => c.Company)
+                .Include(et => et.EmploymentType)
+                .Include(ca => ca.Category)
+                .FirstOrDefaultAsync(j => j.Id == id);
+
+            return View(job);
         }
 
         // GET: Employer/Create
