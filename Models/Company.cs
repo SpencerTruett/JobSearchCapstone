@@ -18,5 +18,6 @@ namespace JobSearch.Models
 
         [StringLength(255, ErrorMessage = "The About Use must be less than 255 characters.")]
         public string AboutUs { get; set; }
+        public List<Job> Jobs { get; set; }
     }
 }

@@ -411,6 +411,8 @@ C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Id
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Create.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Index.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs

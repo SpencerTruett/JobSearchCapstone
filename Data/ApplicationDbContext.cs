@@ -18,6 +18,7 @@ namespace JobSearch.Data
         public DbSet<EmploymentType> EmploymentType { get; set; }
         public DbSet<Job> Job { get; set; }
         public DbSet<Location> Location { get; set; }
+        public DbSet<Category> Category { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -313,6 +314,258 @@ namespace JobSearch.Data
                    Id = 4,
                    Name = "Commission",
                }
+            );
+            modelBuilder.Entity<Category>().HasData(
+                  new Category()
+                  {
+                      Id = 1,
+                      Label = "Acting",
+                  },
+                  new Category()
+                  {
+                      Id = 2,
+                      Label = "Architecture",
+                  },
+                  new Category()
+                  {
+                      Id = 3,
+                      Label = "Art",
+                  },
+                  new Category()
+                  {
+                      Id = 4,
+                      Label = "Music",
+                  },
+                  new Category()
+                  {
+                      Id = 5,
+                      Label = "Accounting",
+                  },
+                  new Category()
+                  {
+                      Id = 6,
+                      Label = "Advertising",
+                  },
+                  new Category()
+                  {
+                      Id = 7,
+                      Label = "Consulting",
+                  },
+                  new Category()
+                  {
+                      Id = 8,
+                      Label = "Financial Advisor",
+                  },
+                  new Category()
+                  {
+                      Id = 9,
+                      Label = "Fundraiser",
+                  },
+                  new Category()
+                  {
+                      Id = 10,
+                      Label = "Human Resources",
+                  },
+                  new Category()
+                  {
+                      Id = 11,
+                      Label = "Insurance",
+                  },
+                  new Category()
+                  {
+                      Id = 12,
+                      Label = "Investment Banking",
+                  },
+                  new Category()
+                  {
+                      Id = 13,
+                      Label = "Legal",
+                  },
+                  new Category()
+                  {
+                      Id = 14,
+                      Label = "Management",
+                  },
+                  new Category()
+                  {
+                      Id = 15,
+                      Label = "Criminal Justice",
+                  },
+                  new Category()
+                  {
+                      Id = 16,
+                      Label = "Publishing",
+                  },
+                  new Category()
+                  {
+                      Id = 17,
+                      Label = "Writer/Editor",
+                  },
+                  new Category()
+                  {
+                      Id = 18,
+                      Label = "Public Relations",
+                  },
+                  new Category()
+                  {
+                      Id = 19,
+                      Label = "Web Developer",
+                  },
+                  new Category()
+                  {
+                      Id = 20,
+                      Label = "Doctor",
+                  },
+                  new Category()
+                  {
+                      Id = 21,
+                      Label = "Social Work",
+                  },
+                  new Category()
+                  {
+                      Id = 22,
+                      Label = "Veterinarian",
+                  },
+                  new Category()
+                  {
+                      Id = 23,
+                      Label = "Nurse",
+                  },
+                  new Category()
+                  {
+                      Id = 24,
+                      Label = "Paramedic",
+                  },
+                  new Category()
+                  {
+                      Id = 25,
+                      Label = "Retail",
+                  },
+                  new Category()
+                  {
+                      Id = 26,
+                      Label = "Hospitality",
+                  },
+                  new Category()
+                  {
+                      Id = 27,
+                      Label = "Restaurant",
+                  },
+                  new Category()
+                  {
+                      Id = 28,
+                      Label = "Education",
+                  },
+                  new Category()
+                  {
+                      Id = 29,
+                      Label = "Bak-End Developer",
+                  },
+                  new Category()
+                  {
+                      Id = 30,
+                      Label = "Front-End Developer",
+                  },
+                  new Category()
+                  {
+                      Id = 31,
+                      Label = "Software Development",
+                  },
+                  new Category()
+                  {
+                      Id = 32,
+                      Label = "Government",
+                  },
+                  new Category()
+                  {
+                      Id = 33,
+                      Label = "Graphic Design",
+                  },
+                  new Category()
+                  {
+                      Id = 34,
+                      Label = "Janitorial",
+                  },
+                  new Category()
+                  {
+                      Id = 35,
+                      Label = "Automotive",
+                  },
+                  new Category()
+                  {
+                      Id = 36,
+                      Label = "Child Care",
+                  },
+                  new Category()
+                  {
+                      Id = 37,
+                      Label = "Maintenance",
+                  },
+                  new Category()
+                  {
+                      Id = 38,
+                      Label = "Mechanic",
+                  },
+                  new Category()
+                  {
+                      Id = 39,
+                      Label = "Media",
+                  },
+                  new Category()
+                  {
+                      Id = 40,
+                      Label = "Office",
+                  },
+                  new Category()
+                  {
+                      Id = 41,
+                      Label = "Pharmacy",
+                  },
+                  new Category()
+                  {
+                      Id = 42,
+                      Label = "Photography",
+                  },
+                  new Category()
+                  {
+                      Id = 43,
+                      Label = "Real Estate",
+                  },
+                  new Category()
+                  {
+                      Id = 44,
+                      Label = "Sales",
+                  },
+                  new Category()
+                  {
+                      Id = 45,
+                      Label = "Science",
+                  },
+                  new Category()
+                  {
+                      Id = 46,
+                      Label = "Security",
+                  },
+                  new Category()
+                  {
+                      Id = 47,
+                      Label = "Telemarketing",
+                  },
+                  new Category()
+                  {
+                      Id = 48,
+                      Label = "Travel",
+                  },
+                  new Category()
+                  {
+                      Id = 49,
+                      Label = "Warehouse",
+                  },
+                  new Category()
+                  {
+                      Id = 50,
+                      Label = "Transportation",
+                  }
             );
         }
     }

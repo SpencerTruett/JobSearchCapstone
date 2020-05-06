@@ -10,10 +10,6 @@ namespace JobSearch.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public ApplicationUser()
-        {
-
-        }
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -21,9 +17,12 @@ namespace JobSearch.Models
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        public int LocationId { get; set; }
-        public int CompanyId { get; set; }
-        public int ApplicantId { get; set; }
+        public int? LocationId { get; set; }
+        public Location Location { get; set; }
+        public int? CompanyId { get; set; }
+        public Company Company { get; set; }
+        public int? ApplicantId { get; set; }
+        public Applicant Applicant { get; set; }
         public bool IsEmployer { get; set; }
     }
 }

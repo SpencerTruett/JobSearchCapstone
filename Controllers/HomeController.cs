@@ -42,23 +42,7 @@ namespace JobSearch.Controllers
             return View(user);
         }
 
-        public async Task<IActionResult> EmployerIndex()
-        {
-            var user = await GetCurrentUserAsync();
-            var jobs = await _context.Job
-                .Where(j => j.CompanyId == user.CompanyId)
-                .Include(c => c.Company)
-                .ToListAsync();
-
-            return View(jobs);
-        }
-
-        public IActionResult ApplicantIndex()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
+       public IActionResult Privacy()
         {
             return View();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query.Internal;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,10 +20,12 @@ namespace JobSearch.Models
         public string Description { get; set; }
         public string Salary { get; set; }
         public string YearsOfExperience { get; set; }
-        public int EmploymentTypeId { get; set; }
+        public int? EmploymentTypeId { get; set; }
         public EmploymentType EmploymentType { get; set; }
-        public int CompanyId { get; set; }
+        public int? CompanyId { get; set; }
         public Company Company { get; set; }
-        public ICollection<Applicant> Applicants { get; set; }
+        public int? CategoryId { get; set; }
+        public Category Category { get; set; }
+        public List<ApplicantJob> ApplicantJobs { get; set; }
     }
 }

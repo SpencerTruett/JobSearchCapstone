@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200505152213_Second")]
-    partial class Second
+    [Migration("20200506203231_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -86,10 +86,10 @@ namespace JobSearch.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("ApplicantId")
+                    b.Property<int?>("ApplicantId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -114,7 +114,7 @@ namespace JobSearch.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LocationId")
+                    b.Property<int?>("LocationId")
                         .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
@@ -152,6 +152,12 @@ namespace JobSearch.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicantId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("LocationId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -167,23 +173,287 @@ namespace JobSearch.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ApplicantId = 0,
-                            CompanyId = 0,
-                            ConcurrencyStamp = "047a81d4-f5b7-4747-9a9e-74a247f44bb6",
+                            ConcurrencyStamp = "1ff5ef77-6412-4fef-b1a8-5d8e61c36141",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
                             IsEmployer = false,
                             LastName = "Straytor",
-                            LocationId = 0,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMgFr98ecOqHKcNzT+CHSe8y0wpP0rcyfErHfC3gTScTMqzCRkOne1lUmujsMKt/kw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN4C6Ri+uv8EfXHdgF/tmO72V3CEuSyTFIgxYBO5mGervmvhGti0ypnUHLweowXLUg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
                             UserName = "admin@admin.com"
+                        });
+                });
+
+            modelBuilder.Entity("JobSearch.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Label")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Label = "Acting"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Label = "Architecture"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Label = "Art"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Label = "Music"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Label = "Accounting"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Label = "Advertising"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Label = "Consulting"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Label = "Financial Advisor"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Label = "Fundraiser"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Label = "Human Resources"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Label = "Insurance"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Label = "Investment Banking"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Label = "Legal"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Label = "Management"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Label = "Criminal Justice"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Label = "Publishing"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Label = "Writer/Editor"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Label = "Public Relations"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Label = "Web Developer"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Label = "Doctor"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Label = "Social Work"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Label = "Veterinarian"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Label = "Nurse"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Label = "Paramedic"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Label = "Retail"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Label = "Hospitality"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Label = "Restaurant"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Label = "Education"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Label = "Bak-End Developer"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Label = "Front-End Developer"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Label = "Software Development"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Label = "Government"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Label = "Graphic Design"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Label = "Janitorial"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Label = "Automotive"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Label = "Child Care"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Label = "Maintenance"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Label = "Mechanic"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Label = "Media"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Label = "Office"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Label = "Pharmacy"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Label = "Photography"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Label = "Real Estate"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Label = "Sales"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Label = "Science"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Label = "Security"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Label = "Telemarketing"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Label = "Travel"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Label = "Warehouse"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Label = "Transportation"
                         });
                 });
 
@@ -256,14 +526,17 @@ namespace JobSearch.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<int>("EmploymentTypeId")
+                    b.Property<int?>("EmploymentTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Position")
@@ -277,6 +550,8 @@ namespace JobSearch.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("CompanyId");
 
@@ -690,16 +965,31 @@ namespace JobSearch.Migrations
             modelBuilder.Entity("JobSearch.Models.ApplicantJob", b =>
                 {
                     b.HasOne("JobSearch.Models.Applicant", "Applicant")
-                        .WithMany()
+                        .WithMany("ApplicantJobs")
                         .HasForeignKey("ApplicantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("JobSearch.Models.Job", "Job")
-                        .WithMany()
+                        .WithMany("ApplicantJobs")
                         .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("JobSearch.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("JobSearch.Models.Applicant", "Applicant")
+                        .WithMany()
+                        .HasForeignKey("ApplicantId");
+
+                    b.HasOne("JobSearch.Models.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("JobSearch.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
                 });
 
             modelBuilder.Entity("JobSearch.Models.Company", b =>
@@ -713,17 +1003,17 @@ namespace JobSearch.Migrations
 
             modelBuilder.Entity("JobSearch.Models.Job", b =>
                 {
-                    b.HasOne("JobSearch.Models.Company", "Company")
+                    b.HasOne("JobSearch.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("JobSearch.Models.Company", "Company")
+                        .WithMany("Jobs")
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("JobSearch.Models.EmploymentType", "EmploymentType")
                         .WithMany()
-                        .HasForeignKey("EmploymentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmploymentTypeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

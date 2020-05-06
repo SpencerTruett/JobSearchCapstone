@@ -40,34 +40,16 @@ namespace JobSearch.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "Category",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
-                    LocationId = table.Column<int>(nullable: false),
-                    CompanyId = table.Column<int>(nullable: false),
-                    ApplicantId = table.Column<int>(nullable: false),
-                    IsEmployer = table.Column<bool>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Label = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +97,113 @@ namespace JobSearch.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Company",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyName = table.Column<string>(maxLength: 55, nullable: true),
+                    LocationId = table.Column<int>(nullable: false),
+                    AboutUs = table.Column<string>(maxLength: 255, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Company", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Company_Location_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Location",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    LocationId = table.Column<int>(nullable: true),
+                    CompanyId = table.Column<int>(nullable: true),
+                    ApplicantId = table.Column<int>(nullable: true),
+                    IsEmployer = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Applicant_ApplicantId",
+                        column: x => x.ApplicantId,
+                        principalTable: "Applicant",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Company",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Location_LocationId",
+                        column: x => x.LocationId,
+                        principalTable: "Location",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Job",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Position = table.Column<string>(maxLength: 55, nullable: true),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
+                    Salary = table.Column<string>(nullable: true),
+                    YearsOfExperience = table.Column<string>(nullable: true),
+                    EmploymentTypeId = table.Column<int>(nullable: true),
+                    CompanyId = table.Column<int>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Job", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Job_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Job_Company_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Company",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Job_EmploymentType_EmploymentTypeId",
+                        column: x => x.EmploymentTypeId,
+                        principalTable: "EmploymentType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -203,57 +292,6 @@ namespace JobSearch.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Company",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CompanyName = table.Column<string>(maxLength: 55, nullable: true),
-                    LocationId = table.Column<int>(nullable: false),
-                    AboutUs = table.Column<string>(maxLength: 255, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Company", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Company_Location_LocationId",
-                        column: x => x.LocationId,
-                        principalTable: "Location",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Job",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Position = table.Column<string>(maxLength: 55, nullable: true),
-                    Description = table.Column<string>(maxLength: 255, nullable: true),
-                    Salary = table.Column<string>(nullable: true),
-                    YearsOfExperience = table.Column<string>(nullable: true),
-                    EmploymentTypeId = table.Column<int>(nullable: false),
-                    CompanyId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Job", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Job_Company_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Company",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Job_EmploymentType_EmploymentTypeId",
-                        column: x => x.EmploymentTypeId,
-                        principalTable: "EmploymentType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ApplicantJob",
                 columns: table => new
                 {
@@ -283,17 +321,74 @@ namespace JobSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicantId", "CompanyId", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsEmployer", "LastName", "LocationId", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, 0, 0, "a9443fe1-168d-406e-a359-13e8849da6e9", "admin@admin.com", true, "Admina", false, "Straytor", 0, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEKjoT6JYGncvqIC4tp6v7MdgezOPBWlw/YRaChUoXINg6/0cDNKjo+u9fnJItOyyGg==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
+                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "1ff5ef77-6412-4fef-b1a8-5d8e61c36141", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEN4C6Ri+uv8EfXHdgF/tmO72V3CEuSyTFIgxYBO5mGervmvhGti0ypnUHLweowXLUg==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "Label" },
+                values: new object[,]
+                {
+                    { 29, "Bak-End Developer" },
+                    { 30, "Front-End Developer" },
+                    { 31, "Software Development" },
+                    { 32, "Government" },
+                    { 33, "Graphic Design" },
+                    { 34, "Janitorial" },
+                    { 35, "Automotive" },
+                    { 36, "Child Care" },
+                    { 37, "Maintenance" },
+                    { 38, "Mechanic" },
+                    { 28, "Education" },
+                    { 39, "Media" },
+                    { 41, "Pharmacy" },
+                    { 42, "Photography" },
+                    { 43, "Real Estate" },
+                    { 44, "Sales" },
+                    { 45, "Science" },
+                    { 46, "Security" },
+                    { 47, "Telemarketing" },
+                    { 48, "Travel" },
+                    { 49, "Warehouse" },
+                    { 50, "Transportation" },
+                    { 40, "Office" },
+                    { 27, "Restaurant" },
+                    { 26, "Hospitality" },
+                    { 12, "Investment Banking" },
+                    { 3, "Art" },
+                    { 4, "Music" },
+                    { 5, "Accounting" },
+                    { 6, "Advertising" },
+                    { 7, "Consulting" },
+                    { 8, "Financial Advisor" },
+                    { 9, "Fundraiser" },
+                    { 10, "Human Resources" },
+                    { 11, "Insurance" },
+                    { 25, "Retail" },
+                    { 2, "Architecture" },
+                    { 13, "Legal" },
+                    { 15, "Criminal Justice" },
+                    { 16, "Publishing" },
+                    { 17, "Writer/Editor" },
+                    { 18, "Public Relations" },
+                    { 19, "Web Developer" },
+                    { 20, "Doctor" },
+                    { 21, "Social Work" },
+                    { 22, "Veterinarian" },
+                    { 23, "Nurse" },
+                    { 24, "Paramedic" },
+                    { 14, "Management" },
+                    { 1, "Acting" }
+                });
 
             migrationBuilder.InsertData(
                 table: "EmploymentType",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Full-time" },
-                    { 2, "Part-time" },
+                    { 4, "Commission" },
                     { 3, "Fixed-Term/Contract" },
-                    { 4, "Commission" }
+                    { 2, "Part-time" },
+                    { 1, "Full-time" }
                 });
 
             migrationBuilder.InsertData(
@@ -311,9 +406,9 @@ namespace JobSearch.Migrations
                     { 34, "North Dakota" },
                     { 35, "Ohio" },
                     { 36, "Oklahoma" },
+                    { 26, "Montana" },
                     { 37, "Oregon" },
                     { 39, "Rhode Island" },
-                    { 26, "Montana" },
                     { 40, "South Carolina" },
                     { 41, "South Dakota" },
                     { 42, "Tennessee" },
@@ -324,9 +419,9 @@ namespace JobSearch.Migrations
                     { 47, "Washington" },
                     { 48, "West Virginia" },
                     { 38, "Pennsylvania" },
+                    { 49, "Wisconsin" },
                     { 25, "Missouri" },
                     { 23, "Minnesota" },
-                    { 49, "Wisconsin" },
                     { 1, "Alabama" },
                     { 2, "Alaska" },
                     { 3, "Arizona" },
@@ -391,6 +486,21 @@ namespace JobSearch.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_ApplicantId",
+                table: "AspNetUsers",
+                column: "ApplicantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_CompanyId",
+                table: "AspNetUsers",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_LocationId",
+                table: "AspNetUsers",
+                column: "LocationId");
+
+            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
@@ -406,6 +516,11 @@ namespace JobSearch.Migrations
                 name: "IX_Company_LocationId",
                 table: "Company",
                 column: "LocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Job_CategoryId",
+                table: "Job",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Job_CompanyId",
@@ -439,9 +554,6 @@ namespace JobSearch.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Applicant");
-
-            migrationBuilder.DropTable(
                 name: "Job");
 
             migrationBuilder.DropTable(
@@ -451,10 +563,16 @@ namespace JobSearch.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Company");
+                name: "Category");
 
             migrationBuilder.DropTable(
                 name: "EmploymentType");
+
+            migrationBuilder.DropTable(
+                name: "Applicant");
+
+            migrationBuilder.DropTable(
+                name: "Company");
 
             migrationBuilder.DropTable(
                 name: "Location");
