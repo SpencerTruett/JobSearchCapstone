@@ -106,26 +106,36 @@ namespace JobSearch.Controllers
         }
 
         // GET: Employer/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var job = await _context.Job.FindAsync(id);
+            if (job == null)
+            {
+                return NotFound();
+            }
+            return View(job);
         }
 
         // POST: Employer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Job job)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                _context.Update(job);
+                await _context.SaveChangesAsync();
             }
-            catch
+            catch (DbUpdateConcurrencyException)
             {
-                return View();
+                
             }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Employer/Delete/5
