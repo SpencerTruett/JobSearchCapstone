@@ -433,3 +433,4 @@ C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.genr
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.csprojAssemblyReference.cache
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Details.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Edit.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Delete.cshtml.g.cs

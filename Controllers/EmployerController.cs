@@ -139,19 +139,33 @@ namespace JobSearch.Controllers
         }
 
         // GET: Employer/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var job = await _context.Job
+                .Include(c => c.Company)
+                .Include(et => et.EmploymentType)
+                .Include(ca => ca.Category)
+                .FirstOrDefaultAsync(j => j.Id == id);
+
+            var loggedInUser = await GetCurrentUserAsync();
+
+            if (job.CompanyId != loggedInUser.CompanyId)
+            {
+                return NotFound();
+            }
+
+            return View(job);
         }
 
         // POST: Employer/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, Job job)
         {
             try
             {
-                // TODO: Add delete logic here
+                _context.Job.Remove(job);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
