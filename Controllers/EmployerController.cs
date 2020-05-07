@@ -33,6 +33,7 @@ namespace JobSearch.Controllers
             var jobs = await _context.Job
                 .Where(j => j.CompanyId == user.CompanyId)
                 .Include(c => c.Company)
+                .ThenInclude(l => l.Location)
                 .Include(et => et.EmploymentType)
                 .Include(ca => ca.Category)
                 .ToListAsync();
@@ -41,61 +42,25 @@ namespace JobSearch.Controllers
         }
 
         // GET: Employer/Details/5
-        public async Task<ActionResult> Details(int id)
+        public ActionResult Details(int id)
         {
-            var job = await _context.Job
-                .Include(c => c.Company)
-                .Include(et => et.EmploymentType)
-                .Include(ca => ca.Category)
-                .FirstOrDefaultAsync(j => j.Id == id);
-
-            return View(job);
+            return View();
         }
 
         // GET: Employer/Create
-        public async Task<ActionResult> Create()
+        public ActionResult Create()
         {
-            var viewModel = new JobEmploymentTypeViewModel();
-
-            var employmentTypeOptions = await _context.EmploymentType.Select(et => new SelectListItem()
-            {
-                Text = et.Name,
-                Value = et.Id.ToString()
-            }).ToListAsync();
-
-            var categoryOptions = await _context.Category.Select(ca => new SelectListItem()
-            {
-                Text = ca.Label,
-                Value = ca.Id.ToString()
-            }).ToListAsync();
-
-            viewModel.EmploymentTypeOptions = employmentTypeOptions;
-            viewModel.CategoryOptions = categoryOptions;
-
-            return View(viewModel);
+            return View();
         }
 
         // POST: Employer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(JobEmploymentTypeViewModel jobView)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                var user = await GetCurrentUserAsync();
-
-                var jobPost = new Job
-                {
-                    Position = jobView.Job.Position,
-                    Description = jobView.Job.Description,
-                    Salary = jobView.Job.Salary,
-                    YearsOfExperience = jobView.Job.YearsOfExperience,
-                    EmploymentTypeId = jobView.EmploymentTypeId,
-                    CategoryId = jobView.CategoryId,
-                    CompanyId = user.CompanyId
-                };
-                _context.Add(jobPost);
-                await _context.SaveChangesAsync();
+                // TODO: Add insert logic here
 
                 return RedirectToAction(nameof(Index));
             }
@@ -106,66 +71,19 @@ namespace JobSearch.Controllers
         }
 
         // GET: Employer/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var job = await _context.Job.FindAsync(id);
-            if (job == null)
-            {
-                return NotFound();
-            }
-            return View(job);
+            return View();
         }
 
         // POST: Employer/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Job job)
+        public ActionResult Edit(int id, IFormCollection collection)
         {
             try
             {
-                _context.Update(job);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
-            }
-            return RedirectToAction(nameof(Index));
-        }
-
-        // GET: Employer/Delete/5
-        public async Task<ActionResult> Delete(int id)
-        {
-            var job = await _context.Job
-                .Include(c => c.Company)
-                .Include(et => et.EmploymentType)
-                .Include(ca => ca.Category)
-                .FirstOrDefaultAsync(j => j.Id == id);
-
-            var loggedInUser = await GetCurrentUserAsync();
-
-            if (job.CompanyId != loggedInUser.CompanyId)
-            {
-                return NotFound();
-            }
-
-            return View(job);
-        }
-
-        // POST: Employer/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Job job)
-        {
-            try
-            {
-                _context.Job.Remove(job);
-                await _context.SaveChangesAsync();
+                // TODO: Add update logic here
 
                 return RedirectToAction(nameof(Index));
             }
@@ -175,6 +93,29 @@ namespace JobSearch.Controllers
             }
         }
 
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        // GET: Employer/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Employer/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }
