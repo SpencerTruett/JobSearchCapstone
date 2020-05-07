@@ -411,7 +411,6 @@ C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Id
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Create.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Index.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
@@ -431,6 +430,7 @@ C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.dll
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.pdb
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.genruntimeconfig.cache
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\JobSearch.csprojAssemblyReference.cache
-C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Details.cshtml.g.cs
-C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Edit.cshtml.g.cs
-C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Employer\Delete.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Job\Create.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Job\Delete.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Job\Details.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Job\Edit.cshtml.g.cs
