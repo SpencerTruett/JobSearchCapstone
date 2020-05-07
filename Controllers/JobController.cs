@@ -98,17 +98,36 @@ namespace JobSearch.Controllers
         // GET: Job/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var viewModel = new JobEmploymentTypeViewModel();
+            var job = await _context.Job.FindAsync(id);
+
+            var employmentTypeOptions = await _context.EmploymentType.Select(et => new SelectListItem()
+            {
+                Text = et.Name,
+                Value = et.Id.ToString()
+            }).ToListAsync();
+
+            var categoryOptions = await _context.Category.Select(ca => new SelectListItem()
+            {
+                Text = ca.Label,
+                Value = ca.Id.ToString()
+            }).ToListAsync();
+
+            viewModel.EmploymentTypeOptions = employmentTypeOptions;
+            viewModel.CategoryOptions = categoryOptions;
+            viewModel.Id = job.Id;
+            viewModel.Job = job;
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var job = await _context.Job.FindAsync(id);
-            if (job == null)
+            if (viewModel == null)
             {
                 return NotFound();
             }
-            return View(job);
+            return View(viewModel);
         }
 
         // POST: Job/Edit/5
