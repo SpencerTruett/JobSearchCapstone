@@ -321,7 +321,7 @@ namespace JobSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicantId", "CompanyId", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsEmployer", "LastName", "LocationId", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "1ff5ef77-6412-4fef-b1a8-5d8e61c36141", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEN4C6Ri+uv8EfXHdgF/tmO72V3CEuSyTFIgxYBO5mGervmvhGti0ypnUHLweowXLUg==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
+                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "7d73ec90-d470-450c-a42c-23197d898fd7", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEIUqe8Bv7SyWo+CbqArit8VCc+IZvlQ1mSrVh8bbwWqPeYMF+vzizwteHvZI8fAW8A==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Category",

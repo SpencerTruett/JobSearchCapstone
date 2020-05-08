@@ -29,6 +29,8 @@ namespace JobSearch.Controllers
         // GET: Employer
         public async Task<IActionResult> Index()
         {
+            var viewModel = new CompanyJobViewModel();
+
             var user = await GetCurrentUserAsync();
             var jobs = await _context.Job
                 .Where(j => j.CompanyId == user.CompanyId)
@@ -38,7 +40,13 @@ namespace JobSearch.Controllers
                 .Include(ca => ca.Category)
                 .ToListAsync();
 
-            return View(jobs);
+            var company = await _context.Company
+                .FirstOrDefaultAsync(c => c.Id == user.CompanyId);
+
+            viewModel.Jobs = jobs;
+            viewModel.Company = company;
+
+            return View(viewModel);
         }
 
         // GET: Employer/Details/5

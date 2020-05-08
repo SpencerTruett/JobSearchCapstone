@@ -84,7 +84,7 @@ namespace JobSearch.Controllers
                     CategoryId = jobView.CategoryId,
                     CompanyId = user.CompanyId
                 };
-                _context.Add(jobPost);
+                _context.Add(jobPost); 
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Employer");

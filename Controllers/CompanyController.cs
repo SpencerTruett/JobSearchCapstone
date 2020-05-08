@@ -2,13 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobSearch.Data;
+using JobSearch.Models;
+using JobSearch.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearch.Controllers
 {
     public class CompanyController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CompanyController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
+
         // GET: Company
         public ActionResult Index()
         {
@@ -45,26 +60,57 @@ namespace JobSearch.Controllers
         }
 
         // GET: Company/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var user = await GetCurrentUserAsync();
+            var viewModel = new EmployerCompanyViewModel();
+            var company = await _context.Company.FirstOrDefaultAsync(c => c.Id == user.CompanyId);
+
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            var locationOptions = await _context.Location.Select(l => new SelectListItem()
+            {
+                Text = l.Name,
+                Value = l.Id.ToString()
+            }).ToListAsync();
+
+            viewModel.Company = company;
+            viewModel.LocationOptions = locationOptions;
+
+
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
+            return View(viewModel);
         }
 
         // POST: Company/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Company company)
         {
             try
             {
-                // TODO: Add update logic here
+                //var companyInfo = new Company()
+                //{
+                //    Id = company.Id,
+                //    CompanyName = company.CompanyName,
+                //    LocationId = company.LocationId,
+                //    AboutUs = company.AboutUs
+                //};
 
-                return RedirectToAction(nameof(Index));
+                _context.Company.Update(company);
+                await _context.SaveChangesAsync();
             }
-            catch
+            catch (DbUpdateConcurrencyException)
             {
-                return View();
+
             }
+            return RedirectToAction("Index", "Employer");
         }
 
         // GET: Company/Delete/5
@@ -89,5 +135,7 @@ namespace JobSearch.Controllers
                 return View();
             }
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }

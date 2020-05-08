@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200506203231_Initial")]
+    [Migration("20200508153237_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,7 +173,7 @@ namespace JobSearch.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1ff5ef77-6412-4fef-b1a8-5d8e61c36141",
+                            ConcurrencyStamp = "7d73ec90-d470-450c-a42c-23197d898fd7",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
@@ -182,7 +182,7 @@ namespace JobSearch.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN4C6Ri+uv8EfXHdgF/tmO72V3CEuSyTFIgxYBO5mGervmvhGti0ypnUHLweowXLUg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIUqe8Bv7SyWo+CbqArit8VCc+IZvlQ1mSrVh8bbwWqPeYMF+vzizwteHvZI8fAW8A==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,

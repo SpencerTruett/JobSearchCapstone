@@ -1,4 +1,4 @@
-﻿@model IEnumerable<JobSearch.Models.Job>
+﻿@model JobSearch.Models.ViewModels.CompanyJobViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -15,13 +15,13 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.Position)
+                        @Html.DisplayNameFor(model => model.Job.Position)
                     </th>
                     <th>
                         Company Name
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Salary)
+                        @Html.DisplayNameFor(model => model.Job.Salary)
                     </th>
                     <th>
                         Years of Experience
@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model.Jobs)
                 {
                     <tr>
                         <td>
@@ -70,41 +70,39 @@
 
     <div class="col-md-4">
             <div>
-                @foreach (var item in Model)
-                {
 
-                    <dd>
-                        <h2>@Html.DisplayFor(modelItem => item.Company.CompanyName)</h2>
-                    </dd>
-                    <dd>
+                    <div>
+                        <h2>@Html.DisplayFor(modelItem => Model.Company.CompanyName)</h2>
+                    </div>
+                    <div>
                         <p>
                             <a asp-controller="Company" asp-action="Edit">Edit Company Info</a>
                         </p>
-                    </dd>
+                    </div>
 
-                    <dd>
-                        <dt>Location: </dt> @Html.DisplayFor(modelItem => item.Company.Location.Name)
-                    </dd>
+                    <div>
+                        <h5>Location: </h5> @Html.DisplayFor(modelItem => Model.Company.Location.Name)
+                    </div>
 
-                    @if (item.Company.AboutUs == null)
+                    @if (Model.Company.AboutUs == null)
                     {
-                        <dt>
+                        <h5>
                             About Us
-                        </dt>
-                        <dd>
+                        </h5>
+                        <div>
                             "Tell us about your Company here!"
-                        </dd>
+                        </div>
                     }
                     else
                     {
-                        <dt>
+                        <h5>
                             About Us
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(modelItem => item.Company.AboutUs)
-                        </dd>
+                        </h5>
+                        <div>
+                            @Html.DisplayFor(modelItem => Model.Company.AboutUs)
+                        </div>
                     }
-                }
+                
             </div>
     </div>
 </div>
