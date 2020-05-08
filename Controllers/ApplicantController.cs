@@ -2,17 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobSearch.Data;
+using JobSearch.Models;
+using JobSearch.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobSearch.Controllers
 {
     public class ApplicantController : Controller
     {
-        // GET: Applicant
-        public ActionResult Index()
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public ApplicantController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            return View();
+            _context = context;
+            _userManager = userManager;
+        }
+
+        // GET: Applicant
+        public async Task<IActionResult> Index()
+        {
+            var viewModel = new ApplicantJobViewModel();
+
+            var user = await GetCurrentUserAsync();
+            var jobs = await _context.Job
+                .Include(c => c.Company)
+                .ThenInclude(l => l.Location)
+                .Include(et => et.EmploymentType)
+                .Include(ca => ca.Category)
+                .ToListAsync();
+
+            var applicant = await _context.Applicant
+                .FirstOrDefaultAsync(a => a.Id == user.ApplicantId);
+
+            viewModel.Jobs = jobs;
+            viewModel.Applicant = applicant;
+
+            return View(viewModel);
         }
 
         // GET: Applicant/Details/5
@@ -89,5 +119,6 @@ namespace JobSearch.Controllers
                 return View();
             }
         }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
     }
 }

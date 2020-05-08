@@ -435,3 +435,4 @@ C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Jo
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Job\Details.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Job\Edit.cshtml.g.cs
 C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Company\Edit.cshtml.g.cs
+C:\Users\gilde\workspace\csharp\JobSearch\obj\Debug\netcoreapp3.1\Razor\Views\Applicant\Index.cshtml.g.cs
