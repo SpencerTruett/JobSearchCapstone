@@ -53,6 +53,10 @@
             @Html.DisplayFor(model => model.EmploymentType.Name)
         </dd>
     </dl>
+    <form asp-controller="" asp-action="">
+        <input type="hidden" />
+        <input type="submit" value="Apply!" class="btn btn-success" />
+    </form>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
