@@ -10,10 +10,10 @@
     <summary>Search</summary>
     <form asp-controller="Job" asp-action="Index">
         <p>
-            Job Title: <input type="text" name="SearchString" class="form-control form-inline w-25">
-            Company: <input type="text" name="SearchString" class="form-control form-inline w-25">
-            Category: <input type="text" name="SearchString" class="form-control form-inline w-25">
-            Location: <input type="text" name="citySearchString" class="form-control form-inline w-25">
+            Job Title: <input type="text" name="positionSearchString" class="form-control form-inline w-25">
+            Company: <input type="text" name="companySearchString" class="form-control form-inline w-25">
+            Category: <input type="text" name="categorySearchString" class="form-control form-inline w-25">
+            Location: <input type="text" name="locationSearchString" class="form-control form-inline w-25">
         </p>
         <input type="submit" value="Search" />
         <input type="button" value="Reset" onclick="location.href='/Job'" />

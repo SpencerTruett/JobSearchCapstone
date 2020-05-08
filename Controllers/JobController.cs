@@ -25,17 +25,38 @@ namespace JobSearch.Controllers
         }
 
         // GET: Job
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string positionSearchString, string companySearchString, string categorySearchString, string locationSearchString)
         {
             var user = await GetCurrentUserAsync();
-            var jobs = await _context.Job
+            var jobs = from j in _context.Job
                 .Include(c => c.Company)
                 .ThenInclude(l => l.Location)
                 .Include(et => et.EmploymentType)
                 .Include(ca => ca.Category)
-                .ToListAsync();
+                 select j;
 
-            return View(jobs);
+                if (!String.IsNullOrEmpty(positionSearchString))
+                {
+                    jobs = jobs.Where(s => s.Position.Contains(positionSearchString));
+                }
+
+                if (!String.IsNullOrEmpty(companySearchString))
+                {
+                    jobs = jobs.Where(s => s.Company.CompanyName.Contains(companySearchString));
+                }
+
+                if (!String.IsNullOrEmpty(categorySearchString))
+                {
+                    jobs = jobs.Where(s => s.Category.Label.Contains(categorySearchString));
+                }
+            
+                if (!String.IsNullOrEmpty(locationSearchString))
+                {
+                    jobs = jobs.Where(s => s.Company.Location.Name.Contains(locationSearchString));
+                }
+
+
+            return View(await jobs.ToListAsync());
         }
 
         // GET: Job/Details/5
