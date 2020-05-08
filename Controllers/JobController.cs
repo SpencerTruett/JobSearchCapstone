@@ -25,9 +25,17 @@ namespace JobSearch.Controllers
         }
 
         // GET: Job
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var user = await GetCurrentUserAsync();
+            var jobs = await _context.Job
+                .Include(c => c.Company)
+                .ThenInclude(l => l.Location)
+                .Include(et => et.EmploymentType)
+                .Include(ca => ca.Category)
+                .ToListAsync();
+
+            return View(jobs);
         }
 
         // GET: Job/Details/5
