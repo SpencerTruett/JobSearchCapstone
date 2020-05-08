@@ -18,9 +18,6 @@
                         @Html.DisplayNameFor(model => model.Job.Position)
                     </th>
                     <th>
-                        Company Name
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Job.Salary)
                     </th>
                     <th>
@@ -41,9 +38,6 @@
                     <tr>
                         <td>
                             @Html.ActionLink(item.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Company.CompanyName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Salary)

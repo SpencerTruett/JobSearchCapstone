@@ -53,7 +53,7 @@
                         @Html.ActionLink(item.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Company.CompanyName)
+                        @Html.ActionLink(item.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Salary)
