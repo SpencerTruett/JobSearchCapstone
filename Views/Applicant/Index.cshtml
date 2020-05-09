@@ -45,41 +45,139 @@
         </table>
     </div>
 
-    @*<div class="col-md-4">
+    <div class="col-md-4">
         <div>
 
             <div>
-                <h2>@Html.DisplayFor(modelItem => Model.Company.CompanyName)</h2>
+                <h2>
+                    Hello World
+                </h2>
+                <h2>
+                    @Html.DisplayFor(modelItem => Model.ApplicationUser.FirstName)
+                </h2>
+                <h2>
+                    @Html.DisplayFor(modelItem => Model.ApplicationUser.LastName)
+                </h2>
             </div>
             <div>
                 <p>
-                    <a asp-controller="Company" asp-action="Edit">Edit Company Info</a>
+                    <a asp-controller="Applicant" asp-action="Edit">Edit Personal Info</a>
                 </p>
             </div>
 
-            <div>
-                <h5>Location: </h5> @Html.DisplayFor(modelItem => Model.Company.Location.Name)
-            </div>
-
-            @if (Model.Company.AboutUs == null)
+            @*@if (Model.ApplicationUser.LocationId == null)
             {
-                <h5>
-                    About Us
-                </h5>
                 <div>
-                    "Tell us about your Company here!"
+                    <h5>Location: </h5> <p>Add your location here!</p>
                 </div>
             }
             else
             {
-                <h5>
-                    About Us
-                </h5>
                 <div>
-                    @Html.DisplayFor(modelItem => Model.Company.AboutUs)
+                    <h5>Location: </h5> @Html.DisplayFor(modelItem => Model.ApplicationUser.Location.Name)
+                </div>
+            }*@
+
+            @*@if (Model.ApplicationUser.Email == null)
+            {
+                <div>
+                    "Add your email here!"
+                </div>
+            }
+            else
+            {
+                <div>
+                    @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
+                </div>
+            }*@
+
+            @*@if (Model.Applicant.SocialLink == null)
+            {
+                <div>
+                    "Add a social link here!"
+                </div>
+            }
+            else
+            {
+                <div>
+                    @Html.DisplayFor(modelItem => Model.Applicant.SocialLink)
                 </div>
             }
 
+            @if (Model.Applicant.Image == null)
+            {
+                <h5>Image</h5>
+                <div>
+                    "Add your Image here!""
+                </div>
+            }
+            else
+            {
+                <h5>Image</h5>
+                <div>
+                    @Html.DisplayFor(modelItem => Model.Applicant.Image)
+                </div>
+            }
+
+            @if (Model.Applicant.Education == null)
+            {
+                <h5>Education</h5>
+                <div>
+                    "Add your Education here!""
+                </div>
+            }
+            else
+            {
+                <h5>Education</h5>
+                <div>
+                    @Html.DisplayFor(modelItem => Model.Applicant.Education)
+                </div>
+            }
+
+            @if (Model.Applicant.Experience == null)
+            {
+                <h5>Experience</h5>
+                <div>
+                    "Add your Experience here!""
+                </div>
+            }
+            else
+            {
+                <h5>Experience</h5>
+                <div>
+                    @Html.DisplayFor(modelItem => Model.Applicant.Experience)
+                </div>
+            }
+
+            @if (Model.Applicant.SkillsAndCertifications == null)
+            {
+                <h5>Skills and Certifications</h5>
+                <div>
+                    "Add your Skills and Certifications here!""
+                </div>
+            }
+            else
+            {
+                <h5>Skills and Certifications</h5>
+                <div>
+                    @Html.DisplayFor(modelItem => Model.Applicant.SkillsAndCertifications)
+                </div>
+            }
+
+            @if (Model.Applicant.Resume == null)
+            {
+                <h5>Resume Link:</h5>
+                <div>
+                    "Add your Resume here!""
+                </div>
+            }
+            else
+            {
+                <h5>Resume Link:</h5>
+                <div>
+                    @Html.DisplayFor(modelItem => Model.Applicant.Resume)
+                </div>
+            }*@
         </div>
-    </div>*@
+    </div>
 </div>
