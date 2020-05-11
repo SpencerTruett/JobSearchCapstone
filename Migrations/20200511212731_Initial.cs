@@ -18,7 +18,8 @@ namespace JobSearch.Migrations
                     Education = table.Column<string>(maxLength: 255, nullable: true),
                     Experience = table.Column<string>(maxLength: 255, nullable: true),
                     SkillsAndCertifications = table.Column<string>(nullable: true),
-                    Resume = table.Column<string>(nullable: true)
+                    Resume = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -321,7 +322,7 @@ namespace JobSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicantId", "CompanyId", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsEmployer", "LastName", "LocationId", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "7d73ec90-d470-450c-a42c-23197d898fd7", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEIUqe8Bv7SyWo+CbqArit8VCc+IZvlQ1mSrVh8bbwWqPeYMF+vzizwteHvZI8fAW8A==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
+                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "3771e840-b39a-4a2a-adee-4c4ac0c9e6d4", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEF2p6YcG/DwfGjJL48RW51NZiV2NE10ZC+BDZ7Q1F4VyKVSq696MrJik0Wr2nj/UoA==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Category",
@@ -488,7 +489,9 @@ namespace JobSearch.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_ApplicantId",
                 table: "AspNetUsers",
-                column: "ApplicantId");
+                column: "ApplicantId",
+                unique: true,
+                filter: "[ApplicantId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_CompanyId",

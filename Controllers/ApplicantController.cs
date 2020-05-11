@@ -126,6 +126,7 @@ namespace JobSearch.Controllers
                 user.FirstName = viewModel.ApplicationUser.FirstName;
                 user.LastName = viewModel.ApplicationUser.LastName;
                 user.Location = viewModel.ApplicationUser.Location;
+                user.Applicant.Email = viewModel.Applicant.Email;
                 user.Applicant.SocialLink = viewModel.Applicant.SocialLink;
                 user.Applicant.Image = viewModel.Applicant.Image;
                 user.Applicant.Education = viewModel.Applicant.Education;

@@ -88,7 +88,7 @@
                 </div>
             }
 
-            @if (Model.ApplicationUser.Email == null)
+            @if (Model.Applicant.Email == null)
             {
                 <div>
                     <h5>Email: </h5> <p>Add your email here!</p>
@@ -97,7 +97,7 @@
             else
             {
                 <div>
-                    <h5>Email:</h5> <a href="mailto:@Html.DisplayFor(modelItem => Model.ApplicationUser.Email)" class="contactText"> @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)</a>
+                    <h5>Email:</h5> <a href="mailto:@Html.DisplayFor(modelItem => Model.Applicant.Email)" class="contactText"> @Html.DisplayFor(modelItem => Model.Applicant.Email)</a>
                 </div>
             }
 

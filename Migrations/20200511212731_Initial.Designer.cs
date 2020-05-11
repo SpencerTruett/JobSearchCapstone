@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200508153237_Initial")]
+    [Migration("20200511212731_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace JobSearch.Migrations
                     b.Property<string>("Education")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Experience")
                         .HasColumnType("nvarchar(255)")
@@ -152,7 +155,9 @@ namespace JobSearch.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicantId");
+                    b.HasIndex("ApplicantId")
+                        .IsUnique()
+                        .HasFilter("[ApplicantId] IS NOT NULL");
 
                     b.HasIndex("CompanyId");
 
@@ -173,7 +178,7 @@ namespace JobSearch.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7d73ec90-d470-450c-a42c-23197d898fd7",
+                            ConcurrencyStamp = "3771e840-b39a-4a2a-adee-4c4ac0c9e6d4",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
@@ -182,7 +187,7 @@ namespace JobSearch.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIUqe8Bv7SyWo+CbqArit8VCc+IZvlQ1mSrVh8bbwWqPeYMF+vzizwteHvZI8fAW8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF2p6YcG/DwfGjJL48RW51NZiV2NE10ZC+BDZ7Q1F4VyKVSq696MrJik0Wr2nj/UoA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -980,8 +985,8 @@ namespace JobSearch.Migrations
             modelBuilder.Entity("JobSearch.Models.ApplicationUser", b =>
                 {
                     b.HasOne("JobSearch.Models.Applicant", "Applicant")
-                        .WithMany()
-                        .HasForeignKey("ApplicantId");
+                        .WithOne("ApplicationUser")
+                        .HasForeignKey("JobSearch.Models.ApplicationUser", "ApplicantId");
 
                     b.HasOne("JobSearch.Models.Company", "Company")
                         .WithMany()

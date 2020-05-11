@@ -30,6 +30,9 @@ namespace JobSearch.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Experience")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
@@ -150,7 +153,9 @@ namespace JobSearch.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicantId");
+                    b.HasIndex("ApplicantId")
+                        .IsUnique()
+                        .HasFilter("[ApplicantId] IS NOT NULL");
 
                     b.HasIndex("CompanyId");
 
@@ -171,7 +176,7 @@ namespace JobSearch.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "43f7561c-6fef-4404-987a-2eb917db19f8",
+                            ConcurrencyStamp = "3771e840-b39a-4a2a-adee-4c4ac0c9e6d4",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
@@ -180,7 +185,7 @@ namespace JobSearch.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECdWg2/8B8dn11Om8aqGcfHHo8TR4h0QYs3AJkSNNdXTSaOM5Glfge/JAvxKntRivw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF2p6YcG/DwfGjJL48RW51NZiV2NE10ZC+BDZ7Q1F4VyKVSq696MrJik0Wr2nj/UoA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
@@ -978,8 +983,8 @@ namespace JobSearch.Migrations
             modelBuilder.Entity("JobSearch.Models.ApplicationUser", b =>
                 {
                     b.HasOne("JobSearch.Models.Applicant", "Applicant")
-                        .WithMany()
-                        .HasForeignKey("ApplicantId");
+                        .WithOne("ApplicationUser")
+                        .HasForeignKey("JobSearch.Models.ApplicationUser", "ApplicantId");
 
                     b.HasOne("JobSearch.Models.Company", "Company")
                         .WithMany()
