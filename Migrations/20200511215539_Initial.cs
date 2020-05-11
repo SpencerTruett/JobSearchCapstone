@@ -13,12 +13,12 @@ namespace JobSearch.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Image = table.Column<string>(nullable: true),
+                    ImagePath = table.Column<string>(nullable: true),
                     SocialLink = table.Column<string>(nullable: true),
                     Education = table.Column<string>(maxLength: 255, nullable: true),
                     Experience = table.Column<string>(maxLength: 255, nullable: true),
                     SkillsAndCertifications = table.Column<string>(nullable: true),
-                    Resume = table.Column<string>(nullable: true),
+                    ResumePath = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -322,7 +322,7 @@ namespace JobSearch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ApplicantId", "CompanyId", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsEmployer", "LastName", "LocationId", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "3771e840-b39a-4a2a-adee-4c4ac0c9e6d4", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEF2p6YcG/DwfGjJL48RW51NZiV2NE10ZC+BDZ7Q1F4VyKVSq696MrJik0Wr2nj/UoA==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
+                values: new object[] { "00000000-ffff-ffff-ffff-ffffffffffff", 0, null, null, "e66dfbc3-8894-454f-85b7-aa2570497b11", "admin@admin.com", true, "Admina", false, "Straytor", null, false, null, "ADMIN@ADMIN.COM", "ADMIN@ADMIN.COM", "AQAAAAEAACcQAAAAEJyAT6GApCb87kOzU/b/Z0WoU+FWqPt1QtqZJ/QmK/GwJEJsGPPwt2GIAK1f/17tZA==", null, false, "7f434309-a4d9-48e9-9ebb-8803db794577", false, "admin@admin.com" });
 
             migrationBuilder.InsertData(
                 table: "Category",

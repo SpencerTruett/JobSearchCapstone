@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using JobSearch.Data;
@@ -128,11 +129,31 @@ namespace JobSearch.Controllers
                 user.Location = viewModel.ApplicationUser.Location;
                 user.Applicant.Email = viewModel.Applicant.Email;
                 user.Applicant.SocialLink = viewModel.Applicant.SocialLink;
-                user.Applicant.Image = viewModel.Applicant.Image;
+                user.Applicant.ImagePath = viewModel.Applicant.ImagePath;
                 user.Applicant.Education = viewModel.Applicant.Education;
                 user.Applicant.Experience = viewModel.Applicant.Experience;
                 user.Applicant.SkillsAndCertifications = viewModel.Applicant.SkillsAndCertifications;
-                user.Applicant.Resume = viewModel.Applicant.Resume;
+                user.Applicant.ResumePath = viewModel.Applicant.ResumePath;
+
+                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images");
+                if (viewModel.ImageFile != null)
+                {
+                    var fileName = Guid.NewGuid().ToString() + viewModel.ImageFile.FileName;
+                    user.Applicant.ImagePath = fileName;
+                    using (var fileStream = new FileStream(Path.Combine(uploadPath, fileName), FileMode.Create))
+                    {
+                        await viewModel.ImageFile.CopyToAsync(fileStream);
+                    }
+                }
+                if (viewModel.ResumeFile != null)
+                {
+                    var fileName = Guid.NewGuid().ToString() + viewModel.ResumeFile.FileName;
+                    user.Applicant.ResumePath = fileName;
+                    using (var fileStream = new FileStream(Path.Combine(uploadPath, fileName), FileMode.Create))
+                    {
+                        await viewModel.ResumeFile.CopyToAsync(fileStream);
+                    }
+                }
 
 
                 _context.ApplicationUsers.Update(user);

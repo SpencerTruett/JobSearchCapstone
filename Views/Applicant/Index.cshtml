@@ -56,10 +56,10 @@
                     @Html.DisplayFor(modelItem => Model.ApplicationUser.LastName)
                 </h2>
             </div>
-            @if (!String.IsNullOrEmpty(Model.Applicant.Image))
+            @if (!String.IsNullOrEmpty(Model.Applicant.ImagePath))
             {
                 <td>
-                    <img style="width: 75px" src="~/images/@Model.Applicant.Image" alt="descriptive image" />
+                    <img style="width: 75px" src="~/images/@Model.Applicant.ImagePath" alt="descriptive image" />
                 </td>
             }
             else
@@ -160,7 +160,7 @@
                 </div>
             }
 
-            @if (Model.Applicant.Resume == null)
+            @if (Model.Applicant.ResumePath == null)
             {
                 <h5>Resume Link:</h5>
                 <div>
@@ -171,10 +171,10 @@
             {
                 <h5>Resume Link:</h5>
                 <div>
-                    <a href="images/@Html.DisplayFor(modelItem => Model.Applicant.Resume)"
+                    <a href="images/@Html.DisplayFor(modelItem => Model.Applicant.ResumePath)"
                        target="_blank"
                        title="resume"
-                       class="special">@Html.DisplayFor(modelItem => Model.Applicant.Resume)</a>
+                       class="special">@Html.DisplayFor(modelItem => Model.Applicant.ResumePath)</a>
                     
                 </div>
             }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,7 @@ namespace JobSearch.Models.ViewModels
         public ApplicationUser ApplicationUser { get; set; }
         public int? LocationId { get; set; }
         public List<SelectListItem> LocationOptions { get; set; }
+        public IFormFile ImageFile { get; set; }
+        public IFormFile ResumeFile { get; set; }
     }
 }

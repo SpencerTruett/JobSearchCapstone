@@ -10,7 +10,7 @@ namespace JobSearch.Models
     public class Applicant
     {
         public int Id { get; set; }
-        public string Image { get; set; }
+        public string ImagePath { get; set; }
         public string SocialLink { get; set; }
 
         [StringLength(255, ErrorMessage = "The Education must be less than 255 characters.")]
@@ -19,7 +19,7 @@ namespace JobSearch.Models
         [StringLength(255, ErrorMessage = "The Experience must be less than 255 characters.")]
         public string Experience { get; set; }
         public string SkillsAndCertifications { get; set; }
-        public string Resume { get; set; }
+        public string ResumePath { get; set; }
         public string Email { get; set; }
         public List<ApplicantJob> ApplicantJobs { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

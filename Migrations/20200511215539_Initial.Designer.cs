@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearch.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200511212731_Initial")]
+    [Migration("20200511215539_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,10 +39,10 @@ namespace JobSearch.Migrations
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Resume")
+                    b.Property<string>("ResumePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SkillsAndCertifications")
@@ -178,7 +178,7 @@ namespace JobSearch.Migrations
                         {
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3771e840-b39a-4a2a-adee-4c4ac0c9e6d4",
+                            ConcurrencyStamp = "e66dfbc3-8894-454f-85b7-aa2570497b11",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admina",
@@ -187,7 +187,7 @@ namespace JobSearch.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF2p6YcG/DwfGjJL48RW51NZiV2NE10ZC+BDZ7Q1F4VyKVSq696MrJik0Wr2nj/UoA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJyAT6GApCb87kOzU/b/Z0WoU+FWqPt1QtqZJ/QmK/GwJEJsGPPwt2GIAK1f/17tZA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "7f434309-a4d9-48e9-9ebb-8803db794577",
                             TwoFactorEnabled = false,
