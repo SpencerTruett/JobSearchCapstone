@@ -34,13 +34,12 @@ namespace JobSearch.Controllers
             var user = await GetCurrentUserAsync();
             var jobs = await _context.Job
                 .Where(j => j.CompanyId == user.CompanyId)
-                .Include(c => c.Company)
-                .ThenInclude(l => l.Location)
                 .Include(et => et.EmploymentType)
                 .Include(ca => ca.Category)
                 .ToListAsync();
 
             var company = await _context.Company
+                .Include(l => l.Location)
                 .FirstOrDefaultAsync(c => c.Id == user.CompanyId);
 
             viewModel.Jobs = jobs;

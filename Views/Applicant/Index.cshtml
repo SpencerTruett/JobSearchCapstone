@@ -12,9 +12,6 @@
             <thead>
                 <tr>
                     <th>
-
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(model => model.Job.Position)
                     </th>
                     <th>
@@ -100,7 +97,7 @@
             else
             {
                 <div>
-                    <h5>Email:</h5> @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
+                    <h5>Email:</h5> <a href="mailto:@Html.DisplayFor(modelItem => Model.ApplicationUser.Email)" class="contactText"> @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)</a>
                 </div>
             }
 
@@ -113,24 +110,10 @@
             else
             {
                 <div>
-                    <h5>Social Link</h5> @Html.DisplayFor(modelItem => Model.Applicant.SocialLink)
+                    <h5>Social Link</h5> <a href="@Html.DisplayFor(modelItem => Model.Applicant.SocialLink)" class="contactText">@Html.DisplayFor(modelItem => Model.Applicant.SocialLink)</a>
                 </div>
             }
 
-            @if (Model.Applicant.Image == null)
-            {
-                <h5>Image</h5>
-                <div>
-                    <p>Add your Image here!</p>
-                </div>
-            }
-            else
-            {
-                <h5>Image</h5>
-                <div>
-                    @Html.DisplayFor(modelItem => Model.Applicant.Image)
-                </div>
-            }
 
             @if (Model.Applicant.Education == null)
             {
@@ -188,7 +171,11 @@
             {
                 <h5>Resume Link:</h5>
                 <div>
-                    @Html.DisplayFor(modelItem => Model.Applicant.Resume)
+                    <a href="images/@Html.DisplayFor(modelItem => Model.Applicant.Resume)"
+                       target="_blank"
+                       title="resume"
+                       class="special">@Html.DisplayFor(modelItem => Model.Applicant.Resume)</a>
+                    
                 </div>
             }
         </div>

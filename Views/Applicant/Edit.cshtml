@@ -13,6 +13,9 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <input type="hidden" asp-for="ApplicationUser.Id" class="form-control" />
+            </div>
+            <div class="form-group">
                 <label asp-for="ApplicationUser.FirstName" class="control-label"></label>
                 <input asp-for="ApplicationUser.FirstName" class="form-control" />
                 <span asp-validation-for="ApplicationUser.FirstName" class="text-danger"></span>
@@ -27,13 +30,13 @@
                 <input asp-for="Applicant.Image" class="form-control" type="file" />
                 <span asp-validation-for="Applicant.Image" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            <label asp-for="ApplicationUser.LocationId" class="control-label">Location</label>
-            <select asp-for="ApplicationUser.LocationId" class="form-control" asp-items="@Model.LocationOptions">
-                <option value="" hidden>Please make a selection</option>
-            </select>
-            <span asp-validation-for="ApplicationUser.LocationId" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+        <label asp-for="ApplicationUser.LocationId" class="control-label">Location</label>
+        <select asp-for="ApplicationUser.LocationId" class="form-control" asp-items="@Model.LocationOptions">
+            <option value="" hidden>Please make a selection</option>
+        </select>
+        <span asp-validation-for="ApplicationUser.LocationId" class="text-danger"></span>
+        </div>
             <div class="form-group">
                 <label asp-for="ApplicationUser.Email" class="control-label"></label>
                 <input asp-for="ApplicationUser.Email" class="form-control" />

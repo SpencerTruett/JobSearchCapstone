@@ -115,17 +115,30 @@ namespace JobSearch.Controllers
         // POST: Applicant/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Applicant applicant, ApplicationUser user)
+        public async Task<IActionResult> Edit(int id, ApplicantPersonalInfoViewModel viewModel)
         {
             try
             {
-                _context.Applicant.Update(applicant);
-                await _context.SaveChangesAsync();
+                var user = await _context.ApplicationUsers
+                    .Include(a => a.Applicant)
+                    .FirstOrDefaultAsync(a => a.Id == viewModel.ApplicationUser.Id);
+
+                user.FirstName = viewModel.ApplicationUser.FirstName;
+                user.LastName = viewModel.ApplicationUser.LastName;
+                user.Location = viewModel.ApplicationUser.Location;
+                user.Applicant.SocialLink = viewModel.Applicant.SocialLink;
+                user.Applicant.Image = viewModel.Applicant.Image;
+                user.Applicant.Education = viewModel.Applicant.Education;
+                user.Applicant.Experience = viewModel.Applicant.Experience;
+                user.Applicant.SkillsAndCertifications = viewModel.Applicant.SkillsAndCertifications;
+                user.Applicant.Resume = viewModel.Applicant.Resume;
+
+
                 _context.ApplicationUsers.Update(user);
                 await _context.SaveChangesAsync();
 
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
