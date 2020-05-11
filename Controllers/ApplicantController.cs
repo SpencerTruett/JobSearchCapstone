@@ -40,15 +40,21 @@ namespace JobSearch.Controllers
                 .FirstOrDefaultAsync(a => a.Id == user.ApplicantId);
 
             viewModel.Jobs = jobs;
+            viewModel.ApplicationUser = user;
             viewModel.Applicant = applicant;
 
             return View(viewModel);
         }
 
         // GET: Applicant/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var applicant = await _context.Applicant
+                .Include(a => a.ApplicationUser)
+                .ThenInclude(l => l.Location)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            return View(applicant);
         }
 
         // GET: Applicant/Create
@@ -77,24 +83,26 @@ namespace JobSearch.Controllers
         // GET: Applicant/Edit/5
         public ActionResult Edit(int id)
         {
+            var viewModel = new EmployerCompanyViewModel();
+
             return View();
         }
 
         // POST: Applicant/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<IActionResult> Edit(int id, Applicant applicant)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction(nameof(Index));
+                _context.Applicant.Update(applicant);
+                await _context.SaveChangesAsync();
             }
             catch
             {
                 return View();
             }
+            return RedirectToAction("Index", "Applicant");
         }
 
         // GET: Applicant/Delete/5

@@ -21,5 +21,6 @@ namespace JobSearch.Models
         public string SkillsAndCertifications { get; set; }
         public string Resume { get; set; }
         public List<ApplicantJob> ApplicantJobs { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

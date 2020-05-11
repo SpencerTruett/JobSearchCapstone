@@ -65,7 +65,7 @@
                 </p>
             </div>
 
-            @*@if (Model.ApplicationUser.LocationId == null)
+            @if (Model.ApplicationUser.LocationId == null)
             {
                 <div>
                     <h5>Location: </h5> <p>Add your location here!</p>
@@ -76,9 +76,9 @@
                 <div>
                     <h5>Location: </h5> @Html.DisplayFor(modelItem => Model.ApplicationUser.Location.Name)
                 </div>
-            }*@
+            }
 
-            @*@if (Model.ApplicationUser.Email == null)
+            @if (Model.ApplicationUser.Email == null)
             {
                 <div>
                     "Add your email here!"
@@ -89,9 +89,9 @@
                 <div>
                     @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
                 </div>
-            }*@
+            }
 
-            @*@if (Model.Applicant.SocialLink == null)
+            @if (Model.Applicant.SocialLink == null)
             {
                 <div>
                     "Add a social link here!"
@@ -177,7 +177,7 @@
                 <div>
                     @Html.DisplayFor(modelItem => Model.Applicant.Resume)
                 </div>
-            }*@
+            }
         </div>
     </div>
 </div>
