@@ -8,6 +8,7 @@ using JobSearch.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace JobSearch.Controllers
@@ -81,22 +82,48 @@ namespace JobSearch.Controllers
         }
 
         // GET: Applicant/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var viewModel = new EmployerCompanyViewModel();
+            var user = await GetCurrentUserAsync();
+            var viewModel = new ApplicantPersonalInfoViewModel();
+            var applicant = await _context.Applicant.FirstOrDefaultAsync(a => a.Id == user.ApplicantId);
 
-            return View();
+            if (applicant == null)
+            {
+                return NotFound();
+            }
+
+            var locationOptions = await _context.Location.Select(l => new SelectListItem()
+            {
+                Text = l.Name,
+                Value = l.Id.ToString()
+            }).ToListAsync();
+
+            viewModel.LocationOptions = locationOptions;
+            viewModel.Id = applicant.Id;
+            viewModel.Applicant = applicant;
+            viewModel.ApplicationUser = user;
+
+
+            if (viewModel == null)
+            {
+                return NotFound();
+            }
+            return View(viewModel);
         }
 
         // POST: Applicant/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Applicant applicant)
+        public async Task<IActionResult> Edit(int id, Applicant applicant, ApplicationUser user)
         {
             try
             {
                 _context.Applicant.Update(applicant);
                 await _context.SaveChangesAsync();
+                _context.ApplicationUsers.Update(user);
+                await _context.SaveChangesAsync();
+
             }
             catch
             {

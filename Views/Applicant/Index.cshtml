@@ -12,6 +12,9 @@
             <thead>
                 <tr>
                     <th>
+
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Job.Position)
                     </th>
                     <th>
@@ -50,15 +53,25 @@
 
             <div>
                 <h2>
-                    Hello World
-                </h2>
-                <h2>
                     @Html.DisplayFor(modelItem => Model.ApplicationUser.FirstName)
                 </h2>
                 <h2>
                     @Html.DisplayFor(modelItem => Model.ApplicationUser.LastName)
                 </h2>
             </div>
+            @if (!String.IsNullOrEmpty(Model.Applicant.Image))
+            {
+                <td>
+                    <img style="width: 75px" src="~/images/@Model.Applicant.Image" alt="descriptive image" />
+                </td>
+            }
+            else
+            {
+                <td>
+                    <img style="width: 75px" src="~/images/Portrait_Placeholder.png" alt="descriptive image" />
+                </td>
+
+            }
             <div>
                 <p>
                     <a asp-controller="Applicant" asp-action="Edit">Edit Personal Info</a>
@@ -81,26 +94,26 @@
             @if (Model.ApplicationUser.Email == null)
             {
                 <div>
-                    "Add your email here!"
+                    <h5>Email: </h5> <p>Add your email here!</p>
                 </div>
             }
             else
             {
                 <div>
-                    @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
+                    <h5>Email:</h5> @Html.DisplayFor(modelItem => Model.ApplicationUser.Email)
                 </div>
             }
 
             @if (Model.Applicant.SocialLink == null)
             {
                 <div>
-                    "Add a social link here!"
+                    <h5>Social Link</h5> <p>Add a social link here!</p>
                 </div>
             }
             else
             {
                 <div>
-                    @Html.DisplayFor(modelItem => Model.Applicant.SocialLink)
+                    <h5>Social Link</h5> @Html.DisplayFor(modelItem => Model.Applicant.SocialLink)
                 </div>
             }
 
@@ -108,7 +121,7 @@
             {
                 <h5>Image</h5>
                 <div>
-                    "Add your Image here!""
+                    <p>Add your Image here!</p>
                 </div>
             }
             else
@@ -123,7 +136,7 @@
             {
                 <h5>Education</h5>
                 <div>
-                    "Add your Education here!""
+                    <p>Add your Education here!</p>
                 </div>
             }
             else
@@ -138,7 +151,7 @@
             {
                 <h5>Experience</h5>
                 <div>
-                    "Add your Experience here!""
+                    <p>Add your Experience here!</p>
                 </div>
             }
             else
@@ -153,7 +166,7 @@
             {
                 <h5>Skills and Certifications</h5>
                 <div>
-                    "Add your Skills and Certifications here!""
+                    <p>Add your Skills and Certifications here!</p>
                 </div>
             }
             else
@@ -168,7 +181,7 @@
             {
                 <h5>Resume Link:</h5>
                 <div>
-                    "Add your Resume here!""
+                    <p>Add your Resume here!</p>
                 </div>
             }
             else
