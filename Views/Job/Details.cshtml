@@ -55,7 +55,7 @@
             @Html.DisplayFor(model => model.EmploymentType.Name)
         </dd>
     </dl>
-    <form asp-controller="Applicant" asp-action="Create">
+    <form asp-controller="Applicant" asp-action="Create" asp-route-id="@Model.Id">
         <input type="hidden" />
         <input type="submit" value="Apply!" class="btn btn-success" />
     </form>
@@ -63,9 +63,11 @@
 <div>
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id });
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
         <a asp-controller="Employer" asp-action="Index">Back to List</a>
+    </div>
     }
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
     {

@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input type="hidden" asp-for="ApplicationUser.Id" class="form-control" />
@@ -26,9 +26,9 @@
                 <span asp-validation-for="ApplicationUser.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Applicant.ImagePath" class="control-label">Upload your Image </label>
-                <input asp-for="Applicant.ImagePath" class="form-control" type="file" />
-                <span asp-validation-for="Applicant.ImagePath" class="text-danger"></span>
+                <label asp-for="ImageFile" class="control-label">Upload your Image </label>
+                <input asp-for="ImageFile" class="form-control" type="file" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div class="form-group">
         <label asp-for="ApplicationUser.LocationId" class="control-label">Location</label>
@@ -63,9 +63,9 @@
                 <span asp-validation-for="Applicant.SkillsAndCertifications" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Applicant.ResumePath" class="control-label">Upload your Resume </label>
-                <input asp-for="Applicant.ResumePath" class="form-control" type="file" />
-                <span asp-validation-for="Applicant.ResumePath" class="text-danger"></span>
+                <label asp-for="ResumeFile" class="control-label">Upload your Resume </label>
+                <input asp-for="ResumeFile" class="form-control" type="file" />
+                <span asp-validation-for="ResumeFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

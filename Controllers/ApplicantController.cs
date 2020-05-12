@@ -39,6 +39,8 @@ namespace JobSearch.Controllers
                 .ToListAsync();
 
             var applicant = await _context.Applicant
+                .Include(a => a.ApplicationUser)
+                .ThenInclude(l => l.Location)
                 .FirstOrDefaultAsync(a => a.Id == user.ApplicantId);
 
             viewModel.Jobs = jobs;
@@ -62,15 +64,13 @@ namespace JobSearch.Controllers
         // GET: Applicant/Create
         public ActionResult Create()
         {
-            var jobApply = new ApplicantJob();
-
-            return View(jobApply);
+            return View();
         }
 
         // POST: Applicant/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ApplicantJob applicantJob)
+        public async Task<ActionResult> Create(int id)
         {
             try
             {
@@ -80,8 +80,8 @@ namespace JobSearch.Controllers
 
                 var jobApplication = new ApplicantJob
                 {
-                    ApplicantId = user.Applicant.Id,
-                    JobId = applicantJob.Job.Id
+                    ApplicantId = user.ApplicantId,
+                    JobId = id
                 };
                 _context.Add(jobApplication);
                 await _context.SaveChangesAsync();
@@ -138,7 +138,7 @@ namespace JobSearch.Controllers
 
                 user.FirstName = viewModel.ApplicationUser.FirstName;
                 user.LastName = viewModel.ApplicationUser.LastName;
-                user.Location = viewModel.ApplicationUser.Location;
+                user.LocationId = viewModel.ApplicationUser.LocationId;
                 user.Applicant.Email = viewModel.Applicant.Email;
                 user.Applicant.SocialLink = viewModel.Applicant.SocialLink;
                 user.Applicant.ImagePath = viewModel.Applicant.ImagePath;
