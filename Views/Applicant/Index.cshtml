@@ -24,17 +24,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Jobs)
+                @foreach (var item in Model.ApplicantJobs)
                 {
                     <tr>
                         <td>
-                            @Html.ActionLink(item.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
+                            @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
                         </td>
                         <td>
-                            @Html.ActionLink(item.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
+                            @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Salary)
+                            @Html.DisplayFor(modelItem => item.Job.Salary)
                         </td>
                         <td>@*  *@
                             @Html.ActionLink("Delete", "Delete", new { id=item.Id })

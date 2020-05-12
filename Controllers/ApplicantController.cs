@@ -31,11 +31,10 @@ namespace JobSearch.Controllers
             var viewModel = new ApplicantJobViewModel();
 
             var user = await GetCurrentUserAsync();
-            var jobs = await _context.Job
-                .Include(c => c.Company)
+            var jobs = await _context.ApplicantJob
+                .Include(j => j.Job)
+                .ThenInclude(c => c.Company)
                 .ThenInclude(l => l.Location)
-                .Include(et => et.EmploymentType)
-                .Include(ca => ca.Category)
                 .ToListAsync();
 
             var applicant = await _context.Applicant
@@ -43,7 +42,7 @@ namespace JobSearch.Controllers
                 .ThenInclude(l => l.Location)
                 .FirstOrDefaultAsync(a => a.Id == user.ApplicantId);
 
-            viewModel.Jobs = jobs;
+            viewModel.ApplicantJobs = jobs;
             viewModel.ApplicationUser = user;
             viewModel.Applicant = applicant;
 
