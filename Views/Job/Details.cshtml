@@ -1,4 +1,6 @@
-﻿@model JobSearch.Models.Job
+﻿@using Microsoft.AspNetCore.Identity
+@model JobSearch.Models.Job
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -53,14 +55,20 @@
             @Html.DisplayFor(model => model.EmploymentType.Name)
         </dd>
     </dl>
-    <form asp-controller="" asp-action="">
+    <form asp-controller="Applicant" asp-action="Create">
         <input type="hidden" />
         <input type="submit" value="Apply!" class="btn btn-success" />
     </form>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
-    <a asp-controller="Employer"
-       asp-action="Index">Back to List</a>
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id });
+        <a asp-controller="Employer" asp-action="Index">Back to List</a>
+    }
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
+    {
+        <a asp-controller="Applicant" asp-action="Index">Back to List</a>
+    }
 </div>

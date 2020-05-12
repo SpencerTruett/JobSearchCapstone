@@ -1,4 +1,6 @@
-﻿@model JobSearch.Models.Applicant
+﻿@using Microsoft.AspNetCore.Identity
+@model JobSearch.Models.Applicant
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
@@ -62,5 +64,12 @@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+    {
+        <a asp-controller="Employer" asp-action="Index">Back to List</a>
+    }
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
+    {
+        <a asp-controller="Applicant" asp-action="Index">Back to List</a>
+    }
 </div>

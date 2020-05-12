@@ -62,19 +62,31 @@ namespace JobSearch.Controllers
         // GET: Applicant/Create
         public ActionResult Create()
         {
-            return View();
+            var jobApply = new ApplicantJob();
+
+            return View(jobApply);
         }
 
         // POST: Applicant/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(ApplicantJob applicantJob)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                var user = await GetCurrentUserAsync();
+
+                var jobApplication = new ApplicantJob
+                {
+                    ApplicantId = user.Applicant.Id,
+                    JobId = applicantJob.Job.Id
+                };
+                _context.Add(jobApplication);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Applicant");
             }
             catch
             {
