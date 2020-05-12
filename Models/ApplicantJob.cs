@@ -13,5 +13,6 @@ namespace JobSearch.Models
         public int JobId { get; set; }
         public Job Job { get; set; }
         public bool IsAccepted { get; set; }
+        public bool IsDeclined { get; set; }
     }
 }
