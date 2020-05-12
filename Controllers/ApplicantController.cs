@@ -188,11 +188,13 @@ namespace JobSearch.Controllers
         // POST: Applicant/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(int id, ApplicantJob applicantJob)
         {
             try
             {
                 // TODO: Add delete logic here
+                _context.ApplicantJob.Remove(applicantJob);
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
