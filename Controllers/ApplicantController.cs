@@ -156,6 +156,10 @@ namespace JobSearch.Controllers
                         await viewModel.ImageFile.CopyToAsync(fileStream);
                     }
                 }
+                //else if (viewModel.ImageFile != null)
+                //{
+                //    user.Applicant.ImagePath = viewModel.ImageFile.ToString();
+                //}
                 if (viewModel.ResumeFile != null)
                 {
                     var fileName = Guid.NewGuid().ToString() + viewModel.ResumeFile.FileName;
@@ -165,6 +169,10 @@ namespace JobSearch.Controllers
                         await viewModel.ResumeFile.CopyToAsync(fileStream);
                     }
                 }
+                //else if (viewModel.ResumeFile != null)
+                //{
+                //    user.Applicant.ResumePath = viewModel.ResumeFile.ToString();
+                //}
 
 
                 _context.ApplicationUsers.Update(user);
