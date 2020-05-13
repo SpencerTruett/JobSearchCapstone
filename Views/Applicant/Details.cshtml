@@ -187,10 +187,10 @@
 <div>
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
     {
-        <a asp-controller="Employer" asp-action="Index">Back to List</a>
+        <a asp-controller="Employer" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
     }
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
     {
-        <a asp-controller="Applicant" asp-action="Index">Back to List</a>
+        <a asp-controller="Applicant" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
     }
 </div>

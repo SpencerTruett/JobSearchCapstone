@@ -141,11 +141,8 @@
         <div>
 
             <div>
-                <h2>
-                    @Html.DisplayFor(modelItem => Model.ApplicationUser.FirstName)
-                </h2>
-                <h2>
-                    @Html.DisplayFor(modelItem => Model.ApplicationUser.LastName)
+                <h2 style="margin-top: 25px">
+                    @Html.DisplayFor(modelItem => Model.ApplicationUser.FirstName) @Html.DisplayFor(modelItem => Model.ApplicationUser.LastName)
                 </h2>
             </div>
             @if (!String.IsNullOrEmpty(Model.Applicant.ImagePath))
