@@ -60,7 +60,7 @@ namespace JobSearch.Controllers
 
             viewModel.Company = await _context.Company
                 .Include(a => a.ApplicationUser)
-                .ThenInclude(l => l.Location)
+                .Include(l => l.Location)
                 .FirstOrDefaultAsync(c => c.Id == user.CompanyId);
 
             return View(viewModel);

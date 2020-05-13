@@ -146,11 +146,10 @@ namespace JobSearch.Controllers
                 user.LocationId = viewModel.ApplicationUser.LocationId;
                 user.Applicant.Email = viewModel.Applicant.Email;
                 user.Applicant.SocialLink = viewModel.Applicant.SocialLink;
-                user.Applicant.ImagePath = viewModel.Applicant.ImagePath;
                 user.Applicant.Education = viewModel.Applicant.Education;
                 user.Applicant.Experience = viewModel.Applicant.Experience;
                 user.Applicant.SkillsAndCertifications = viewModel.Applicant.SkillsAndCertifications;
-                user.Applicant.ResumePath = viewModel.Applicant.ResumePath;
+                
 
                 var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images");
                 if (viewModel.ImageFile != null)
