@@ -54,9 +54,14 @@ namespace JobSearch.Controllers
                     CompanyLocation = j.Company.Location.Name,
                     CompanyAboutUs = j.Company.AboutUs,
                     ApplicantCount = j.ApplicantJobs.Count()
-                }).ToListAsync();
+                })
+                .Where(c => c.Company.ApplicationUser.Id == user.Id)
+                .ToListAsync();
 
-            viewModel.Company = await _context.Company.FirstOrDefaultAsync(c => c.Id == user.CompanyId);
+            viewModel.Company = await _context.Company
+                .Include(a => a.ApplicationUser)
+                .ThenInclude(l => l.Location)
+                .FirstOrDefaultAsync(c => c.Id == user.CompanyId);
 
             return View(viewModel);
         }

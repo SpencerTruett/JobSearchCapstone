@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
@@ -81,6 +82,16 @@ namespace JobSearch.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            //public List<SelectListItem> locationOptions { get; set; }
+            //public void OnGet()
+            //{
+            //   var locationOptions = _context.Location.Select(l => new SelectListItem()
+            //    {
+            //        Text = l.Name,
+            //        Value = l.Id.ToString()
+            //    }).ToList();
+            //}
         }
 
         public async Task OnGetAsync(string returnUrl = null)

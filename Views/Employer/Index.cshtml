@@ -11,7 +11,69 @@
 </p>
 <div class="row">
     <div class="col-md-8">
-        <table class="table">
+                @if (Model.Jobs.Count > 0)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Position
+                                </th>
+                                <th>
+                                    Salary
+                                </th>
+                                <th>
+                                    Years of Experience
+                                </th>
+                                <th>
+                                    Emplyment Type
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+                                <th>
+                                    No. of Applicants
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @foreach (var item in Model.Jobs)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(item.Position, "Details", "Job", new { id = item.JobId }, new { area = "" })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Salary)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.YearsOfExperience)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EmploymentTypeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryName)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ApplicantCount)
+                                    </td>
+                    
+                                        @*<td>
+                                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                            </td>*@
+                                    </tr>
+                                }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                            <table class="table">
             <thead>
                 <tr>
                     <th>
@@ -36,38 +98,43 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.Jobs)
-                {
-                <tr>
-                    <td>
-                        @Html.ActionLink(item.Position, "Details", "Job", new { id = item.JobId }, new { area = "" })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Salary)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.YearsOfExperience)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EmploymentTypeName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CategoryName)
-                    </td>
+                    @foreach (var item in Model.Jobs)
+                    {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Position, "Details", "Job", new { id = item.JobId }, new { area = "" })
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.YearsOfExperience)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmploymentTypeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryName)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApplicantCount)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApplicantCount)
+                        </td>
                     
-                        @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-            </td>*@
-                    </tr>
-                }
+                            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+                        </tr>
+                    }
             </tbody>
         </table>
+                    <div>
+                        <p>There are currently no jobs to display.</p>
+                        <p>Please add a job post by clicking the link above.</p>
+                    </div>
+                }
     </div>
 
     <div class="col-md-4">
