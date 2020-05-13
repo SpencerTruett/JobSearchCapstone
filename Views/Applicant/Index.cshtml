@@ -35,10 +35,10 @@
                     {
                         <tr>
                             <td>
-                                @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
+                                @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Job.Id }, new { area = "" })
                             </td>
                             <td>
-                                @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
+                                @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Job.Company.Id }, new { area = "" })
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Job.Salary)
@@ -95,10 +95,10 @@
                     {
                         <tr>
                             <td>
-                                @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
+                                @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Job.Id }, new { area = "" })
                             </td>
                             <td>
-                                @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
+                                @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Job.Company.Id }, new { area = "" })
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Job.Salary)

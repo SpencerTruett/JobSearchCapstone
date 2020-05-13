@@ -62,30 +62,33 @@
             <input type="submit" value="Apply!" class="btn btn-success" />
         </form>
     }
-    </div>
-<div>
-    <h4>Applicants (@Model.ApplicantJobs.Count())</h4>
-    <hr />
-    <dl class="row">
-        @foreach (var item in Model.ApplicantJobs)
-        {
-            <dd class="col-sm-10">
-                <li>@Html.ActionLink(item.Applicant.ApplicationUser.FirstName + " " + item.Applicant.ApplicationUser.LastName, "Details", "Applicant", new { id = item.Applicant.Id }, new { area = "" })</li>
-            </dd>
-        }
-    </dl>
 </div>
-<div>
-    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
-    {
+@if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+{
     <div>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
-        <a asp-controller="Employer" asp-action="Index">Back to List</a>
+        <h4>Applicants (@Model.ApplicantJobs.Count())</h4>
+        <hr />
+        <dl class="row">
+            @foreach (var item in Model.ApplicantJobs)
+            {
+                <dd class="col-sm-10">
+                    <li>@Html.ActionLink(item.Applicant.ApplicationUser.FirstName + " " + item.Applicant.ApplicationUser.LastName, "Details", "Applicant", new { id = item.Applicant.Id }, new { area = "" })</li>
+                </dd>
+            }
+        </dl>
     </div>
-    }
-    @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
-    {
-        <a asp-controller="Applicant" asp-action="Index">Back to List</a>
-    }
-</div>
+}
+    <div>
+        @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+        {
+            <div>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+                <a asp-controller="Employer" asp-action="Index">Back to List</a>
+            </div>
+        }
+        @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
+        {
+            <a asp-controller="Applicant" asp-action="Index">Back to List</a>
+        }
+    </div>
