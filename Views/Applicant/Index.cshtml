@@ -1,4 +1,6 @@
-﻿@model JobSearch.Models.ViewModels.ApplicantJobViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model JobSearch.Models.ViewModels.ApplicantJobViewModel
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -27,41 +29,42 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.ApplicantJobs)
-                {
-                <tr>
-                    <td>
-                        @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
-                    </td>
-                    <td>
-                        @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Job.Salary)
-                    </td>
-                    @if (item.IsAccepted == false && item.IsDeclined == false)
+                    @foreach (var item in Model.ApplicantJobs)
                     {
-                        <td>
-                            Pending
-                        </td>
-                    }
-                    @if (item.IsAccepted == true)
-                    {
-                        <td>
-                            Accepted
-                        </td>
-                    }
-                    @if (item.IsDeclined == true)
-                    {
-                        <td>
-                            Declined
-                        </td>
-                    }
-                    <td>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
-                }
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.Job.Position, "Details", "Job", new { id = item.Id }, new { area = "" })
+                            </td>
+                            <td>
+                                @Html.ActionLink(item.Job.Company.CompanyName, "Details", "Company", new { id = item.Id }, new { area = "" })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Job.Salary)
+                            </td>
+                            @if (item.IsAccepted == false && item.IsDeclined == false)
+                            {
+                                <td>
+                                    Pending
+                                </td>
+                            }
+                            @if (item.IsAccepted == true)
+                            {
+                                <td>
+                                    Accepted
+                                </td>
+                            }
+                            @if (item.IsDeclined == true)
+                            {
+                                <td>
+                                    Declined
+                                </td>
+                            }
+                            @*<td>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>*@
+                        </tr>
+                     }
+               
             </tbody>
         </table>
     </div>

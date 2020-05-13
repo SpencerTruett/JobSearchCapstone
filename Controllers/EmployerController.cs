@@ -29,21 +29,34 @@ namespace JobSearch.Controllers
         // GET: Employer
         public async Task<IActionResult> Index()
         {
-            var viewModel = new CompanyJobViewModel();
 
             var user = await GetCurrentUserAsync();
-            var jobs = await _context.Job
-                .Where(j => j.CompanyId == user.CompanyId)
-                .Include(et => et.EmploymentType)
-                .Include(ca => ca.Category)
-                .ToListAsync();
 
-            var company = await _context.Company
-                .Include(l => l.Location)
-                .FirstOrDefaultAsync(c => c.Id == user.CompanyId);
+            var viewModel = new CompanyJobViewModel();
 
-            viewModel.Jobs = jobs;
-            viewModel.Company = company;
+
+            viewModel.Jobs = await _context
+                .Job
+                .Select(j => new JobsWithCountViewModel()
+                {
+                    JobId = j.Id,
+                    Position = j.Position,
+                    Description = j.Description,
+                    Salary = j.Salary,
+                    YearsOfExperience = j.YearsOfExperience,
+                    EmploymentTypeId = j.EmploymentTypeId,
+                    EmploymentTypeName = j.EmploymentType.Name,
+                    CategoryId = j.CategoryId,
+                    CategoryName = j.Category.Label,
+                    CompanyId = j.CompanyId,
+                    Company = j.Company,
+                    CompanyName = j.Company.CompanyName,
+                    CompanyLocation = j.Company.Location.Name,
+                    CompanyAboutUs = j.Company.AboutUs,
+                    ApplicantCount = j.ApplicantJobs.Count()
+                }).ToListAsync();
+
+            viewModel.Company = await _context.Company.FirstOrDefaultAsync(c => c.Id == user.CompanyId);
 
             return View(viewModel);
         }

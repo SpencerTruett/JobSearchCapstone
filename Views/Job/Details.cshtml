@@ -55,10 +55,25 @@
             @Html.DisplayFor(model => model.EmploymentType.Name)
         </dd>
     </dl>
-    <form asp-controller="Applicant" asp-action="Create" asp-route-id="@Model.Id">
-        <input type="hidden" />
-        <input type="submit" value="Apply!" class="btn btn-success" />
-    </form>
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
+    {
+        <form asp-controller="Applicant" asp-action="Create" asp-route-id="@Model.Id">
+            <input type="hidden" />
+            <input type="submit" value="Apply!" class="btn btn-success" />
+        </form>
+    }
+    </div>
+<div>
+    <h4>Applicants (@Model.ApplicantJobs.Count())</h4>
+    <hr />
+    <dl class="row">
+        @foreach (var item in Model.ApplicantJobs)
+        {
+            <dd class="col-sm-10">
+                <li>@Html.ActionLink(item.Applicant.ApplicationUser.FirstName + " " + item.Applicant.ApplicationUser.LastName, "Details", "Applicant", new { id = item.Applicant.Id }, new { area = "" })</li>
+            </dd>
+        }
+    </dl>
 </div>
 <div>
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)

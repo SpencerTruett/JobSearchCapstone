@@ -66,6 +66,9 @@ namespace JobSearch.Controllers
                 .Include(c => c.Company)
                 .Include(et => et.EmploymentType)
                 .Include(ca => ca.Category)
+                .Include(aj => aj.ApplicantJobs)
+                .ThenInclude(aj => aj.Applicant)
+                .ThenInclude(au => au.ApplicationUser)
                 .FirstOrDefaultAsync(j => j.Id == id);
 
             return View(job);

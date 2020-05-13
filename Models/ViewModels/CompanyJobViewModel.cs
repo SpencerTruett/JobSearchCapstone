@@ -7,9 +7,7 @@ namespace JobSearch.Models.ViewModels
 {
     public class CompanyJobViewModel 
     {
-        public int Id { get; set; }
+        public List<JobsWithCountViewModel> Jobs { get; set; }
         public Company Company { get; set; }
-        public List<Job> Jobs { get; set; }
-        public Job Job { get; set; }
     }
 }

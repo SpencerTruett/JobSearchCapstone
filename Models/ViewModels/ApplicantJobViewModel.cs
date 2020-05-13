@@ -11,6 +11,7 @@ namespace JobSearch.Models.ViewModels
         public Applicant Applicant { get; set; }
         public List<ApplicantJob> ApplicantJobs { get; set; }
         public Job Job { get; set; }
+        public List<Job> Jobs { get; set; }
         public ApplicantJob ApplicantJob { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
     }
