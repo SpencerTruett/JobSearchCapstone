@@ -12,58 +12,179 @@
     <h4>Applicant</h4>
     <hr />
     <dl class="row">
+        @if (!String.IsNullOrEmpty(Model.ImagePath))
+        {
+            <td>
+                <img style="width: 75px; margin-left: 15px" src="~/images/@Model.ImagePath" alt="descriptive image" />
+            </td>
+        }
+        else
+        {
+            <td>
+                <img style="width: 75px; margin-left: 15px" src="~/images/Portrait_Placeholder.png" alt="descriptive image" />
+            </td>
+
+        }
+    </dl>
+    <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+            First Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ApplicationUser.FirstName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+            Last Name
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.ApplicationUser.LastName)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SocialLink)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SocialLink)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Education)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Education)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Experience)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Experience)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SkillsAndCertifications)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SkillsAndCertifications)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ResumePath)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ResumePath)
-        </dd>
+        @if (Model.ApplicationUser.LocationId == null)
+        {
+            <dt class="col-sm-2">
+                Location:
+            </dt>
+            <dd class="col-sm-10">
+                Add your location here!
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                Location:
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.ApplicationUser.Location.Name)
+            </dd>
+        }
+
+        @if (Model.Email == null)
+        {
+            <dt class="col-sm-2">
+                Email:
+            </dt>
+            <dd class="col-sm-10">
+                <p>Add your email here!</p>
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                Email:
+            </dt>
+            <dd class="col-sm-10">
+                <a href="mailto:@Html.DisplayFor(modelItem => Model.Email)" class="contactText"> @Html.DisplayFor(modelItem => Model.Email)</a>
+            </dd>
+        }
+        @if (Model.SocialLink == null)
+        {
+
+            <dt class="col-sm-2">
+                Social Link
+            </dt>
+
+            <dd class="col-sm-10">
+                No social link provided
+            </dd>
+
+        }
+        else
+        {
+
+            <dt class="col-sm-2">
+                Social Link
+            </dt>
+
+            <dd class="col-sm-10">
+                <a href="http://@Html.DisplayFor(modelItem => Model.SocialLink)" class="contactText">@Html.DisplayFor(modelItem => Model.SocialLink)</a>
+            </dd>
+
+        }
+        @if (Model.Education == null)
+        {
+            <dt class="col-sm-2">
+                Education
+            </dt>
+
+            <dd class="col-sm-10">
+                No education provided
+            </dd>
+
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                Education
+            </dt>
+            <dd class="col-sm-10">
+
+                @Html.DisplayFor(modelItem => Model.Education)
+            </dd>
+
+        }
+        @if (Model.Experience == null)
+        {
+            <dt class="col-sm-2">
+                Experience
+            </dt>
+            <dd class="col-sm-10">
+                No experience provided
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                Experience
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.Experience)
+            </dd>
+        }
+        @if (Model.SkillsAndCertifications == null)
+        {
+            <dt class="col-sm-2">
+                Skills and Certifications
+            </dt>
+
+            <dd class="col-sm-10">
+                No skills or certifications provided
+            </dd>
+
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                Skills and Certifications
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => Model.SkillsAndCertifications)
+            </dd>
+        }
+        @if (Model.ResumePath == null)
+        {
+            <dt class="col-sm-2">
+                Resume Link:
+            </dt>
+
+            <dd class="col-sm-10">
+                No resume provided
+            </dd>
+        }
+        else
+        {
+            <dt class="col-sm-2">
+                Resume Link:
+            </dt>
+            <dd class="col-sm-10">
+                <a href="~/images/@Html.DisplayFor(modelItem => Model.ResumePath)"
+                   target="_blank"
+                   title="resume"
+                   class="special">Resume</a>
+            </dd>
+        }
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
     {
         <a asp-controller="Employer" asp-action="Index">Back to List</a>

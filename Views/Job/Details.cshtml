@@ -12,46 +12,47 @@
     <h4>Details</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <div></div>
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Position)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-7">
             @Html.DisplayFor(model => model.Position)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Company Name
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CompanyId)
+        <dd class="col-sm-7">
+            @Html.DisplayFor(model => model.Company.CompanyName)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Category
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-7">
             @Html.DisplayFor(model => model.Category.Label)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-7">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Salary)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-7">
             @Html.DisplayFor(model => model.Salary)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Years of Experience
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-7">
             @Html.DisplayFor(model => model.YearsOfExperience)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-3">
             Employment Type
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-7">
             @Html.DisplayFor(model => model.EmploymentType.Name)
         </dd>
     </dl>
@@ -65,10 +66,10 @@
 </div>
 @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
 {
-    <div>
+    <div class="col-md-6" style="margin-left: -15px">
         <h4>Applicants (@Model.ApplicantJobs.Count())</h4>
         <hr />
-        <dl class="row">
+        <dl class="row" style="margin-left: 0px">
             @foreach (var item in Model.ApplicantJobs)
             {
                 <dd class="col-sm-10">
