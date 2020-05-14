@@ -183,6 +183,46 @@
         }
     </dl>
 </div>
+
+@if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+{
+    <div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">
+
+        <form asp-controller="Job" asp-action="Accept">
+            <input type="hidden" @*asp-for=""*@ />
+            <input type="submit" value="Accept" class="btn btn-success" />
+        </form>
+
+        <form asp-controller="Job" asp-action="Decline">
+            <input type="hidden" @*asp-for=""*@ />
+            <input type="submit" value="Decline" class="btn btn-danger" style="margin-left:10px" />
+        </form>
+
+    </div>
+}
+
+@*@if (UserManager.GetUserAsync(User).Result.IsEmployer == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsAccepted == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsDecline == false)
+    {
+        <div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">✔ You accepted this applicantion!
+
+        <form asp-controller="Job" asp-action="Decline">
+            <input type="hidden" asp-for="" />
+            <input type="submit" value="Decline" class="btn btn-danger"  style="margin-left:10px"/>
+        </form>
+        </div>
+    }
+
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsDeclined == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsAccepted == false)
+    {
+        <div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">❌ You declined this application.
+
+        <form asp-controller="Job" asp-action="Accept">
+            <input type="hidden" asp-for="" />
+            <input type="submit" value="Accept" class="btn btn-success"  style="margin-left:10px"/>
+        </form>
+        </div>
+    }*@
+
 <div>
     @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
     {
