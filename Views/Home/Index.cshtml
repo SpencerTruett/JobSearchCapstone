@@ -10,18 +10,19 @@
 @if (!SignInManager.IsSignedIn(User))
 {
     <div class="text-center">
-        <h1 class="display-4">Welcome to Job Search</h1>
-        <h1>(Working Title)</h1>
+        <img style="max-width: 650px" src="~/images/JobSearchLogo.png" />
+        <h1 class="display-4" style="margin-top: 20px">Welcome to Job Search</h1>
+        <h2>Log in or register below to gain access to hundreds of fantasic jobs and eager applicants!</h2>
         <div class="col-md-12">
-            <dl class="row" style="margin-top:150px;">
+            <dl class="row" style="margin-top:50px;">
                 <dt class="col-md-6">
                     <h1 style="font-size:80px;">
-                        <a asp-area="Identity" asp-page="/Account/EmployerLogin">Employer Login</a>
+                        <a asp-area="Identity" asp-page="/Account/EmployerLogin" class="btn btn-secondary btn-sm btn-link" style="font-size:80px;">Employer Login</a>
                     </h1>
                 </dt>
                 <dt class="col-md-6">
                     <h1 style="font-size:80px;">
-                        <a asp-area="Identity" asp-page="/Account/ApplicantLogin">Applicant Login</a>
+                        <a asp-area="Identity" asp-page="/Account/ApplicantLogin" class="btn btn-secondary btn-sm btn-link" style="font-size:80px;">Applicant Login</a>
                     </h1>
                 </dt>
             </dl>

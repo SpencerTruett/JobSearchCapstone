@@ -11,16 +11,18 @@
     <form asp-controller="Job" asp-action="Index">
         <p style="display: flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row;  margin-bottom: 15px">
-                By Job Title:&nbsp <input type="text" name="positionSearchString" class="form-control form-inline w-25" style="margin-right: 25px">
+                By Job Title:&nbsp &nbsp <input type="text" name="positionSearchString" class="form-control form-inline w-25" style="margin-right: 25px">
                 By Company:&nbsp <input type="text" name="companySearchString" class="form-control form-inline w-25">
             </div>
             <div style="display: flex; flex-direction: row">
                 By Category:&nbsp <input type="text" name="categorySearchString" class="form-control form-inline w-25" style="margin-right: 25px">
-                By Location:&nbsp <input type="text" name="locationSearchString" class="form-control form-inline w-25">
+                By Location:&nbsp &nbsp<input type="text" name="locationSearchString" class="form-control form-inline w-25">
             </div>
         </p>
-        <input type="submit" value="Search"  style="margin-left: 70px; margin-bottom: 20px"/>
-        <input type="button" value="Reset" onclick="location.href='/Job'" />
+        <div style="margin-bottom: 15px; margin-left:100px">
+            <input type="submit" value="Search"   class="btn btn-primary btn-sm"/>
+            <input type="button" value="Reset" onclick="location.href='/Job'" class="btn btn-secondary text-dark btn-sm" style="margin-left:10px"/>
+        </div>
     </form>
 </details>
 
