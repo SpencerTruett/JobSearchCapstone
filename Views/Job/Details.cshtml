@@ -74,6 +74,24 @@
                 <dd class="col-sm-10">
                     <li>@Html.ActionLink(item.Applicant.ApplicationUser.FirstName + " " + item.Applicant.ApplicationUser.LastName, "Details", "Applicant", new { id = item.Applicant.Id, JobId = Model.Id }, new { area = "" })</li>
                 </dd>
+                @if (item.IsAccepted == false && item.IsDeclined == false)
+                {
+                    <dd style="color: gray">
+                        Pending
+                    </dd>
+                }
+                @if (item.IsAccepted == true)
+                {
+                    <dd style="color: green">
+                        Accepted
+                    </dd>
+                }
+                @if (item.IsDeclined == true)
+                {
+                    <dd style="color: red">
+                        Declined
+                    </dd>
+                }
             }
         </dl>
     </div>

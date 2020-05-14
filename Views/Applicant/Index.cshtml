@@ -45,19 +45,19 @@
                             </td>
                             @if (item.IsAccepted == false && item.IsDeclined == false)
                             {
-                                <td>
+                                <td style="color: gray">
                                     Pending
                                 </td>
                             }
                             @if (item.IsAccepted == true)
                             {
-                                <td>
+                                <td style="color: green">
                                     Accepted
                                 </td>
                             }
                             @if (item.IsDeclined == true)
                             {
-                                <td>
+                                <td style="color: red">
                                     Declined
                                 </td>
                             }
