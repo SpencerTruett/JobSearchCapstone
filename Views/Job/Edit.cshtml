@@ -33,18 +33,18 @@
                 <span asp-validation-for="Job.YearsOfExperience" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label">Job Category</label>
-                <select asp-for="CategoryId" class="form-control" asp-items="@Model.CategoryOptions">
+                <label asp-for="Job.CategoryId" class="control-label">Job Category</label>
+                <select asp-for="Job.CategoryId" class="form-control" asp-items="@Model.CategoryOptions">
                     <option value="" hidden>Please make a selection</option>
                 </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
+                <span asp-validation-for="Job.CategoryId" class="text-danger"></span>
+            </div> 
             <div class="form-group">
-                <label asp-for="EmploymentTypeId" class="control-label">Employment Type</label>
-                <select asp-for="EmploymentTypeId" class="form-control" asp-items="@Model.EmploymentTypeOptions">
+                <label asp-for="Job.EmploymentTypeId" class="control-label">Employment Type</label>
+                <select asp-for="Job.EmploymentTypeId" class="form-control" asp-items="@Model.EmploymentTypeOptions">
                     <option value="" hidden>Please make a selection</option>
                 </select>
-                <span asp-validation-for="EmploymentTypeId" class="text-danger"></span>
+                <span asp-validation-for="Job.EmploymentTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="hidden" asp-for="Job.CompanyId" class="form-control" />

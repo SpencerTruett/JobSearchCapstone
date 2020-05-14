@@ -131,7 +131,7 @@ namespace JobSearch.Controllers
         public async Task<IActionResult> Edit(int? id)
         {
             var viewModel = new JobEmploymentTypeViewModel();
-            var job = await _context.Job.FindAsync(id);
+            var job = await _context.Job.FirstOrDefaultAsync(j => j.Id == id);
 
             var employmentTypeOptions = await _context.EmploymentType.Select(et => new SelectListItem()
             {
@@ -169,14 +169,35 @@ namespace JobSearch.Controllers
         {
             try
             {
-                _context.Update(job);
+                var user = await GetCurrentUserAsync();
+
+                var singleJob = await _context.Job
+                .Include(c => c.Company)
+                .Include(et => et.EmploymentType)
+                .Include(ca => ca.Category)
+                .Include(aj => aj.ApplicantJobs)
+                .ThenInclude(aj => aj.Applicant)
+                .ThenInclude(au => au.ApplicationUser)
+                .FirstOrDefaultAsync(j => j.Id == id);
+
+
+                singleJob.Position = job.Position;
+                singleJob.Description = job.Description;
+                singleJob.Salary = job.Salary;
+                singleJob.YearsOfExperience = job.YearsOfExperience;
+                singleJob.EmploymentTypeId = job.EmploymentTypeId;
+                singleJob.CategoryId = job.CategoryId;
+                singleJob.CompanyId = user.CompanyId;
+                
+
+                _context.Update(singleJob);
                 await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Employer");
             }
             catch (DbUpdateConcurrencyException)
             {
-
+                return View();
             }
-            return RedirectToAction("Index", "Employer");
         }
 
         // GET: Job/Delete/5
@@ -209,6 +230,62 @@ namespace JobSearch.Controllers
                 await _context.SaveChangesAsync();
 
                 return RedirectToAction("Index", "Employer");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Accept(ApplicantJob acceptApplication)
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+
+                var singleAccept = new ApplicantJob
+                {
+                    IsAccepted = true,
+                    IsDeclined = false
+                };
+
+                singleAccept.JobId = acceptApplication.Job.Id;
+                singleAccept.ApplicantId = acceptApplication.Applicant.Id;
+
+                _context.ApplicantJob.Update(singleAccept);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Details", "Products", new { id = acceptApplication.Id });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Decline(ApplicantJob declineApplication)
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+
+                var singleDecline = new ApplicantJob
+                {
+                    IsAccepted = false,
+                    IsDeclined = true
+                };
+
+                singleDecline.JobId = declineApplication.Job.Id;
+                singleDecline.ApplicantId = declineApplication.Applicant.Id;
+
+                _context.ApplicantJob.Update(singleDecline);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction("Details", "Products", new { id = declineApplication.Id });
             }
             catch
             {

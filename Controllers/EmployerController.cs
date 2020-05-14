@@ -55,7 +55,7 @@ namespace JobSearch.Controllers
                     CompanyAboutUs = j.Company.AboutUs,
                     ApplicantCount = j.ApplicantJobs.Count()
                 })
-                .Where(c => c.Company.ApplicationUser.Id == user.Id)
+                .Where(j => j.CompanyId == user.CompanyId)
                 .ToListAsync();
 
             viewModel.Company = await _context.Company
