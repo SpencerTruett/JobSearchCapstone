@@ -16,7 +16,7 @@ namespace JobSearch.Models
         public int LocationId { get; set; }
         public Location Location { get; set; }
 
-        [StringLength(255, ErrorMessage = "The About Use must be less than 255 characters.")]
+        [StringLength(1000, ErrorMessage = "The About Use must be less than 1000 characters.")]
         public string AboutUs { get; set; }
         public List<Job> Jobs { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
