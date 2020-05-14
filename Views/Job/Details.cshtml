@@ -82,8 +82,8 @@
         @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
         {
             <div>
-                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = Model.Id }) |
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm text-dark" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-secondary btn-sm text-dark" }) |
                 <a asp-controller="Employer" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
             </div>
         }

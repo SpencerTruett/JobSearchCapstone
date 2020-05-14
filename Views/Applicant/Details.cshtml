@@ -6,10 +6,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Html.DisplayFor(model => model.ApplicationUser.FirstName) @Html.DisplayFor(model => model.ApplicationUser.LastName)</h1>
 
 <div>
-    <h4>Applicant</h4>
     <hr />
     <dl class="row">
         @if (!String.IsNullOrEmpty(Model.ImagePath))
