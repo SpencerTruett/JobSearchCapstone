@@ -239,25 +239,22 @@ namespace JobSearch.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Accept(ApplicantJob acceptApplication)
+        public async Task<ActionResult> Accept(ApplicantJobViewModel applicantJobView, bool IsAccepted, bool IsDeclined)
         {
             try
             {
                 var user = await GetCurrentUserAsync();
 
-                var singleAccept = new ApplicantJob
-                {
-                    IsAccepted = true,
-                    IsDeclined = false
-                };
+                var userApplicant = await _context.ApplicantJob
+                    .FirstOrDefaultAsync(j => j.Id == applicantJobView.ApplicantJobId);
 
-                singleAccept.JobId = acceptApplication.Job.Id;
-                singleAccept.ApplicantId = acceptApplication.Applicant.Id;
+                userApplicant.IsAccepted = applicantJobView.ApplicantJob.IsAccepted;
+                userApplicant.IsDeclined = applicantJobView.ApplicantJob.IsDeclined;
 
-                _context.ApplicantJob.Update(singleAccept);
+                _context.ApplicantJob.Update(userApplicant);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Details", "Products", new { id = acceptApplication.Id });
+                return RedirectToAction("Details", "Job", new { id = userApplicant.JobId });
             }
             catch
             {
@@ -267,25 +264,22 @@ namespace JobSearch.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Decline(ApplicantJob declineApplication)
+        public async Task<ActionResult> Decline(ApplicantJobViewModel applicantJobView, bool IsAccepted, bool IsDeclined)
         {
             try
             {
                 var user = await GetCurrentUserAsync();
 
-                var singleDecline = new ApplicantJob
-                {
-                    IsAccepted = false,
-                    IsDeclined = true
-                };
+                var userApplicant = await _context.ApplicantJob
+                    .FirstOrDefaultAsync(j => j.Id == applicantJobView.ApplicantJobId);
 
-                singleDecline.JobId = declineApplication.Job.Id;
-                singleDecline.ApplicantId = declineApplication.Applicant.Id;
+                userApplicant.IsAccepted = applicantJobView.ApplicantJob.IsAccepted;
+                userApplicant.IsDeclined = applicantJobView.ApplicantJob.IsDeclined;
 
-                _context.ApplicantJob.Update(singleDecline);
+                _context.ApplicantJob.Update(userApplicant);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Details", "Products", new { id = declineApplication.Id });
+                return RedirectToAction("Details", "Job", new { id = userApplicant.JobId });
             }
             catch
             {

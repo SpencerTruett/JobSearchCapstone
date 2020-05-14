@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@model JobSearch.Models.Applicant
+@model JobSearch.Models.ViewModels.ApplicantJobViewModel
 @inject UserManager<ApplicationUser> UserManager
 
 @{
@@ -11,10 +11,10 @@
 <div>
     <hr />
     <dl class="row">
-        @if (!String.IsNullOrEmpty(Model.ImagePath))
+        @if (!String.IsNullOrEmpty(Model.Applicant.ImagePath))
         {
             <td>
-                <img style="width: 150px; margin-left: 15px" src="~/images/@Model.ImagePath" alt="descriptive image" />
+                <img style="width: 150px; margin-left: 15px" src="~/images/@Model.Applicant.ImagePath" alt="descriptive image" />
             </td>
         }
         else
@@ -30,15 +30,15 @@
             First Name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ApplicationUser.FirstName)
+            @Html.DisplayFor(model => model.Applicant.ApplicationUser.FirstName)
         </dd>
         <dt class="col-sm-2">
             Last Name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ApplicationUser.LastName)
+            @Html.DisplayFor(model => model.Applicant.ApplicationUser.LastName)
         </dd>
-        @if (Model.ApplicationUser.LocationId == null)
+        @if (Model.Applicant.ApplicationUser.LocationId == null)
         {
             <dt class="col-sm-2">
                 Location:
@@ -53,11 +53,11 @@
                 Location:
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => Model.ApplicationUser.Location.Name)
+                @Html.DisplayFor(modelItem => Model.Applicant.ApplicationUser.Location.Name)
             </dd>
         }
 
-        @if (Model.Email == null)
+        @if (Model.Applicant.Email == null)
         {
             <dt class="col-sm-2">
                 Email:
@@ -72,10 +72,10 @@
                 Email:
             </dt>
             <dd class="col-sm-10">
-                <a href="mailto:@Html.DisplayFor(modelItem => Model.Email)" class="contactText"> @Html.DisplayFor(modelItem => Model.Email)</a>
+                <a href="mailto:@Html.DisplayFor(modelItem => Model.Applicant.Email)" class="contactText"> @Html.DisplayFor(modelItem => Model.Applicant.Email)</a>
             </dd>
         }
-        @if (Model.SocialLink == null)
+        @if (Model.Applicant.SocialLink == null)
         {
 
             <dt class="col-sm-2">
@@ -95,11 +95,11 @@
             </dt>
 
             <dd class="col-sm-10">
-                <a href="http://@Html.DisplayFor(modelItem => Model.SocialLink)" class="contactText">@Html.DisplayFor(modelItem => Model.SocialLink)</a>
+                <a href="http://@Html.DisplayFor(modelItem => Model.Applicant.SocialLink)" class="contactText">@Html.DisplayFor(modelItem => Model.Applicant.SocialLink)</a>
             </dd>
 
         }
-        @if (Model.Education == null)
+        @if (Model.Applicant.Education == null)
         {
             <dt class="col-sm-2">
                 Education
@@ -117,11 +117,11 @@
             </dt>
             <dd class="col-sm-10">
 
-                @Html.DisplayFor(modelItem => Model.Education)
+                @Html.DisplayFor(modelItem => Model.Applicant.Education)
             </dd>
 
         }
-        @if (Model.Experience == null)
+        @if (Model.Applicant.Experience == null)
         {
             <dt class="col-sm-2">
                 Experience
@@ -136,10 +136,10 @@
                 Experience
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => Model.Experience)
+                @Html.DisplayFor(modelItem => Model.Applicant.Experience)
             </dd>
         }
-        @if (Model.SkillsAndCertifications == null)
+        @if (Model.Applicant.SkillsAndCertifications == null)
         {
             <dt class="col-sm-2">
                 Skills and Certifications
@@ -156,10 +156,10 @@
                 Skills and Certifications
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(modelItem => Model.SkillsAndCertifications)
+                @Html.DisplayFor(modelItem => Model.Applicant.SkillsAndCertifications)
             </dd>
         }
-        @if (Model.ResumePath == null)
+        @if (Model.Applicant.ResumePath == null)
         {
             <dt class="col-sm-2">
                 Resume Link:
@@ -175,7 +175,7 @@
                 Resume Link:
             </dt>
             <dd class="col-sm-10">
-                <a href="~/images/@Html.DisplayFor(modelItem => Model.ResumePath)"
+                <a href="~/images/@Html.DisplayFor(modelItem => Model.Applicant.ResumePath)"
                    target="_blank"
                    title="resume"
                    class="special">Resume</a>
@@ -184,52 +184,62 @@
     </dl>
 </div>
 
-@if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+@if (UserManager.GetUserAsync(User).Result.IsEmployer == true && Model.ApplicantJob.IsAccepted == false && Model.ApplicantJob.IsDeclined == false)
 {
     <div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">
 
         <form asp-controller="Job" asp-action="Accept">
-            <input type="hidden" @*asp-for=""*@ />
+            <input type="hidden" asp-for="@Model.ApplicantJobId" />
+            <input type="hidden" asp-for="@Model.ApplicantJob.IsAccepted" value=true />
+            <input type="hidden" asp-for="@Model.ApplicantJob.IsDeclined" value=false />
             <input type="submit" value="Accept" class="btn btn-success" />
         </form>
 
         <form asp-controller="Job" asp-action="Decline">
-            <input type="hidden" @*asp-for=""*@ />
+            <input type="hidden" asp-for="@Model.ApplicantJobId" />
+            <input type="hidden" asp-for="@Model.ApplicantJob.IsAccepted" value=false />
+            <input type="hidden" asp-for="@Model.ApplicantJob.IsDeclined" value=true />
             <input type="submit" value="Decline" class="btn btn-danger" style="margin-left:10px" />
         </form>
 
     </div>
 }
 
-@*@if (UserManager.GetUserAsync(User).Result.IsEmployer == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsAccepted == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsDecline == false)
+@if (UserManager.GetUserAsync(User).Result.IsEmployer == true && Model.ApplicantJob.IsAccepted == true && Model.ApplicantJob.IsDeclined == false)
     {
-        <div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">✔ You accepted this applicantion!
+<div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">
+    ✔ You accepted this applicantion!
 
-        <form asp-controller="Job" asp-action="Decline">
-            <input type="hidden" asp-for="" />
-            <input type="submit" value="Decline" class="btn btn-danger"  style="margin-left:10px"/>
-        </form>
-        </div>
-    }
-
-    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsDeclined == true && UserManager.GetUserAsync(User).Result.Applicant.ApplicantJobs.IsAccepted == false)
-    {
-        <div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">❌ You declined this application.
-
-        <form asp-controller="Job" asp-action="Accept">
-            <input type="hidden" asp-for="" />
-            <input type="submit" value="Accept" class="btn btn-success"  style="margin-left:10px"/>
-        </form>
-        </div>
-    }*@
-
-<div>
-    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
-    {
-        <a asp-controller="Employer" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
-    }
-    @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
-    {
-        <a asp-controller="Applicant" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
-    }
+    <form asp-controller="Job" asp-action="Decline">
+        <input type="hidden" asp-for="@Model.ApplicantJobId" />
+        <input type="hidden" asp-for="@Model.ApplicantJob.IsAccepted" value=false />
+        <input type="hidden" asp-for="@Model.ApplicantJob.IsDeclined" value=true />
+        <input type="submit" value="Decline" class="btn btn-danger" style="margin-left:10px" />
+    </form>
 </div>
+    }
+
+    @if (UserManager.GetUserAsync(User).Result.IsEmployer == true && Model.ApplicantJob.IsAccepted == false && Model.ApplicantJob.IsDeclined == true)
+    {
+<div class="row" style="float:right; position: absolute; top: 150px; right: 800px;">
+    ❌ You declined this application.
+
+    <form asp-controller="Job" asp-action="Accept">
+        <input type="hidden" asp-for="@Model.ApplicantJobId" />
+        <input type="hidden" asp-for="@Model.ApplicantJob.IsAccepted" value=true />
+        <input type="hidden" asp-for="@Model.ApplicantJob.IsDeclined" value=false />
+        <input type="submit" value="Accept" class="btn btn-success" />
+    </form>
+</div>
+    }
+
+    <div>
+        @if (UserManager.GetUserAsync(User).Result.IsEmployer == true)
+        {
+            <a asp-controller="Employer" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
+        }
+        @if (UserManager.GetUserAsync(User).Result.IsEmployer == false)
+        {
+            <a asp-controller="Applicant" asp-action="Index" class="btn btn-secondary btn-sm text-dark">Back to List</a>
+        }
+    </div>

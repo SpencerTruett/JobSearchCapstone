@@ -56,14 +56,32 @@ namespace JobSearch.Controllers
         }
 
         // GET: Applicant/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Details(int id, int JobId)
         {
+
+            var viewModel = new ApplicantJobViewModel();
+
+            var user = await GetCurrentUserAsync();
+
             var applicant = await _context.Applicant
                 .Include(a => a.ApplicationUser)
                 .ThenInclude(l => l.Location)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
-            return View(applicant);
+            var applicantJob = await _context.ApplicantJob
+                .Include(j => j.Job)
+                .FirstOrDefaultAsync(a => a.ApplicantId == applicant.Id && a.JobId == JobId);
+
+            var applicantJobs = await _context.ApplicantJob
+                .Where(j => j.JobId == JobId)
+                .ToListAsync();
+
+            viewModel.Applicant = applicant;
+            viewModel.ApplicantJob = applicantJob;
+            viewModel.ApplicantJobs = applicantJobs;
+            viewModel.ApplicantJobId = applicantJob.Id;
+
+            return View(viewModel);
         }
 
         // GET: Applicant/Create

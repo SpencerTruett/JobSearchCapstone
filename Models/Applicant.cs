@@ -23,5 +23,6 @@ namespace JobSearch.Models
         public string Email { get; set; }
         public List<ApplicantJob> ApplicantJobs { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+        public int JobId { get; set; }
     }
 }
