@@ -109,7 +109,7 @@ namespace JobSearch.Controllers
                 _context.Add(jobApplication);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index", "Applicant");
+                return RedirectToAction("Index", "Job");
             }
             catch
             {

@@ -14,12 +14,12 @@ namespace JobSearch.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Position is a Required Field")]
         [StringLength(55, ErrorMessage = "The Position must be less than 55 characters.")]
-        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,256}$", ErrorMessage = "Special characters are not allowed.")]
+        //[RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,256}$", ErrorMessage = "Special characters are not allowed.")]
         public string Position { get; set; }
 
         [Required(ErrorMessage = "Description is a Required Field")]
         [StringLength(255, ErrorMessage = "The Description must be less than 255 characters.")]
-        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,256}$", ErrorMessage = "Special characters are not allowed.")]
+        //[RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,256}$", ErrorMessage = "Special characters are not allowed.")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Salary is a Required Field")]
         public string Salary { get; set; }
